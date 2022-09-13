@@ -91,13 +91,8 @@ import { RouterLink } from "vue-router";
             >Home</router-link
           >
 
-          <router-link to="/about" class="text-gray-200 hover:text-white transition"
-            >About</router-link
-          >
-          <a
-            href="pages/shop.html"
-            class="text-gray-200 hover:text-white transition"
-            >Shop</a
+          <router-link to="/shop" class="text-gray-200 hover:text-white transition"
+            >Shop</router-link
           >
           <a href="#" class="text-gray-200 hover:text-white transition"
             >About us</a
