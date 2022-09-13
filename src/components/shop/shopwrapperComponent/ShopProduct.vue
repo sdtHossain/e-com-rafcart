@@ -1,3 +1,6 @@
+<script setup>
+import { RouterLink } from "vue-router";
+</script>
 <template>
   <div class="col-span-3">
     <div class="flex items-center mb-4">
@@ -54,13 +57,13 @@
           </div>
         </div>
         <div class="pt-4 pb-3 px-4">
-          <a href="#">
+          <router-link to="/product/1" href="#">
             <h4
               class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition"
             >
               Guyer Chair
             </h4>
-          </a>
+          </router-link>
           <div class="flex items-baseline mb-1 space-x-2">
             <p class="text-xl text-primary font-semibold">$45.00</p>
             <p class="text-sm text-gray-400 line-through">$55.90</p>
