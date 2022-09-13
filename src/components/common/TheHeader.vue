@@ -1,3 +1,7 @@
+<script setup>
+import { RouterLink } from "vue-router";
+</script>
+
 <template>
   <header class="py-4 shadow-sm bg-white">
     <div class="container flex items-center justify-between">
@@ -52,15 +56,15 @@
             2
           </div>
         </a>
-        <a
-          href="#"
+        <router-link
+          to="/account/1"
           class="text-center text-gray-700 hover:text-primary transition relative"
         >
           <div class="text-2xl">
             <i class="fa-regular fa-user"></i>
           </div>
           <div class="text-xs leading-3">Account</div>
-        </a>
+        </router-link>
       </div>
     </div>
   </header>
