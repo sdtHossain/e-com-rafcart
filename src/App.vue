@@ -1,9 +1,12 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
+import TheHeader from "@/components/common/TheHeader.vue";
+import TheNavigation from "@/components/common/TheNavigation.vue";
+import TheFooter from "@/components/common/TheFooter.vue";
 </script>
 
 <template>
-  <header>
+  <!-- <header>
     <img
       alt="Vue logo"
       class="logo"
@@ -21,7 +24,12 @@ import { RouterLink, RouterView } from "vue-router";
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
+
+  <TheHeader />
+  <TheNavigation />
 
   <RouterView />
+
+  <TheFooter />
 </template>
