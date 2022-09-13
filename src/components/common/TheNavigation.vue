@@ -101,10 +101,9 @@ import { RouterLink } from "vue-router";
             >Contact us</a
           >
         </div>
-        <a
-          href="pages/login.html"
+        <router-link to="/login"
           class="text-gray-200 hover:text-white transition"
-          >Login</a
+          >Login</router-link
         >
       </div>
     </div>
