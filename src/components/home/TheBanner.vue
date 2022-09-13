@@ -6,7 +6,7 @@
     <div class="container">
       <h1 class="text-6xl text-gray-800 font-medium mb-4 capitalize">
         best collection for <br />
-        home 
+        home decoration
       </h1>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam <br />
