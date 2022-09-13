@@ -24,6 +24,11 @@ const router = createRouter({
       name: 'Account',
       component: () => import('../views/AccountView.vue')
     },
+    {
+      path: '/checkout',
+      name: 'Checkout',
+      component: () => import('../views/CheckoutView.vue')
+    },
     }
   ]
 })
