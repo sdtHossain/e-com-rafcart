@@ -15,10 +15,10 @@ import { RouterLink, RouterView } from "vue-router";
     <div class="wrapper">
 
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <h1 className="text-5xl font-bold underline text-indigo-100">Hello world!</h1>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
   </header>
