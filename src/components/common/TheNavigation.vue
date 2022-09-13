@@ -21,7 +21,7 @@ import { RouterLink } from "vue-router";
             class="flex items-center px-6 py-3 hover:bg-gray-100 transition"
           >
             <img
-              src="assets/images/icons/sofa.svg"
+              src="../../assets/images/icons/sofa.svg"
               alt="sofa"
               class="w-5 h-5 object-contain"
             />
@@ -32,7 +32,7 @@ import { RouterLink } from "vue-router";
             class="flex items-center px-6 py-3 hover:bg-gray-100 transition"
           >
             <img
-              src="assets/images/icons/terrace.svg"
+              src="../../assets/images/icons/terrace.svg"
               alt="terrace"
               class="w-5 h-5 object-contain"
             />
@@ -43,7 +43,7 @@ import { RouterLink } from "vue-router";
             class="flex items-center px-6 py-3 hover:bg-gray-100 transition"
           >
             <img
-              src="assets/images/icons/bed.svg"
+              src="../../assets/images/icons/bed.svg"
               alt="bed"
               class="w-5 h-5 object-contain"
             />
@@ -54,7 +54,7 @@ import { RouterLink } from "vue-router";
             class="flex items-center px-6 py-3 hover:bg-gray-100 transition"
           >
             <img
-              src="assets/images/icons/office.svg"
+              src="../../assets/images/icons/office.svg"
               alt="office"
               class="w-5 h-5 object-contain"
             />
@@ -65,7 +65,7 @@ import { RouterLink } from "vue-router";
             class="flex items-center px-6 py-3 hover:bg-gray-100 transition"
           >
             <img
-              src="assets/images/icons/outdoor-cafe.svg"
+              src="../../assets/images/icons/outdoor-cafe.svg"
               alt="outdoor"
               class="w-5 h-5 object-contain"
             />
@@ -76,7 +76,7 @@ import { RouterLink } from "vue-router";
             class="flex items-center px-6 py-3 hover:bg-gray-100 transition"
           >
             <img
-              src="assets/images/icons/bed-2.svg"
+              src="../../assets/images/icons/bed-2.svg"
               alt="Mattress"
               class="w-5 h-5 object-contain"
             />

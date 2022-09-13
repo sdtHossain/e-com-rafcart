@@ -6,7 +6,7 @@
     <div class="grid grid-cols-3 gap-3">
       <div class="relative rounded-sm overflow-hidden group">
         <img
-          src="assets/images/category/category-1.jpg"
+          src="../../assets/images/category/category-1.jpg"
           alt="category 1"
           class="w-full"
         />
@@ -18,7 +18,7 @@
       </div>
       <div class="relative rounded-sm overflow-hidden group">
         <img
-          src="assets/images/category/category-2.jpg"
+          src="../../assets/images/category/category-2.jpg"
           alt="category 1"
           class="w-full"
         />
@@ -30,7 +30,7 @@
       </div>
       <div class="relative rounded-sm overflow-hidden group">
         <img
-          src="assets/images/category/category-3.jpg"
+          src="../../assets/images/category/category-3.jpg"
           alt="category 1"
           class="w-full"
         />
@@ -42,7 +42,7 @@
       </div>
       <div class="relative rounded-sm overflow-hidden group">
         <img
-          src="assets/images/category/category-4.jpg"
+          src="../../assets/images/category/category-4.jpg"
           alt="category 1"
           class="w-full"
         />
@@ -54,7 +54,7 @@
       </div>
       <div class="relative rounded-sm overflow-hidden group">
         <img
-          src="assets/images/category/category-5.jpg"
+          src="../../assets/images/category/category-5.jpg"
           alt="category 1"
           class="w-full"
         />
@@ -66,7 +66,7 @@
       </div>
       <div class="relative rounded-sm overflow-hidden group">
         <img
-          src="assets/images/category/category-6.jpg"
+          src="../../assets/images/category/category-6.jpg"
           alt="category 1"
           class="w-full"
         />

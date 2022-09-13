@@ -5,7 +5,7 @@
         class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5"
       >
         <img
-          src="assets/images/icons/delivery-van.svg"
+          src="../../assets/images/icons/delivery-van.svg"
           alt="Delivery"
           class="w-12 h-12 object-contain"
         />
@@ -18,7 +18,7 @@
         class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5"
       >
         <img
-          src="assets/images/icons/money-back.svg"
+          src="../../assets/images/icons/money-back.svg"
           alt="Delivery"
           class="w-12 h-12 object-contain"
         />
@@ -31,7 +31,7 @@
         class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5"
       >
         <img
-          src="assets/images/icons/service-hours.svg"
+          src="../../assets/images/icons/service-hours.svg"
           alt="Delivery"
           class="w-12 h-12 object-contain"
         />
