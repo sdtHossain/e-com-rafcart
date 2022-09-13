@@ -28,8 +28,7 @@ import { RouterLink } from "vue-router";
       </div>
 
       <div class="flex items-center space-x-4">
-        <a
-          href="#"
+        <router-link to="/wishlist"
           class="text-center text-gray-700 hover:text-primary transition relative"
         >
           <div class="text-2xl">
@@ -41,7 +40,7 @@ import { RouterLink } from "vue-router";
           >
             8
           </div>
-        </a>
+        </router-link>
         <a
           href="#"
           class="text-center text-gray-700 hover:text-primary transition relative"
