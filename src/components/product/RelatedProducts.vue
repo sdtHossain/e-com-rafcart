@@ -7,7 +7,7 @@
       <div class="bg-white shadow rounded overflow-hidden group">
         <div class="relative">
           <img
-            src="../assets/images/products/product1.jpg"
+            src="../../assets/images/products/product1.jpg"
             alt="product 1"
             class="w-full"
           />
@@ -62,7 +62,7 @@
       <div class="bg-white shadow rounded overflow-hidden group">
         <div class="relative">
           <img
-            src="../assets/images/products/product4.jpg"
+            src="../../assets/images/products/product4.jpg"
             alt="product 1"
             class="w-full"
           />
@@ -117,7 +117,7 @@
       <div class="bg-white shadow rounded overflow-hidden group">
         <div class="relative">
           <img
-            src="../assets/images/products/product2.jpg"
+            src="../../assets/images/products/product2.jpg"
             alt="product 1"
             class="w-full"
           />
@@ -172,7 +172,7 @@
       <div class="bg-white shadow rounded overflow-hidden group">
         <div class="relative">
           <img
-            src="../assets/images/products/product3.jpg"
+            src="../../assets/images/products/product3.jpg"
             alt="product 1"
             class="w-full"
           />
