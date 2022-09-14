@@ -1,5 +1,13 @@
 <script setup>
+import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
+
+import { getData } from '../../../hook/getDataSet'
+
+const products = ref()
+onMounted(() => {
+  products.value = getData('products')
+})
 </script>
 <template>
   <div class="col-span-3">
