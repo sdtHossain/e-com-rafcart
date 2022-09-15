@@ -1,10 +1,24 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
+// import { getData } from '../../../hook/getDataSet'
 
-import { getData } from '../../../hook/getDataSet'
+const limit = ref(12);
+const products = ref([]);
 
-const products = getData('products')
+const getData = async(item, limit) => {
+  const res = await fetch(`https://dummyjson.com/${item}?limit=${limit}`)
+  const data = await res.json()
+  // console.log(data.products)
+  products.value = data.products
+}
+
+getData("products", limit.value)
+
+const loadMoreProduct = () => {
+  limit.value += 10;
+  limit.value <= 100 && getData("products", limit.value);
+};
 </script>
 <template>
   <div class="col-span-3">
@@ -38,7 +52,7 @@ const products = getData('products')
       <div v-for="product in products" :key="product.title" class="bg-white shadow rounded overflow-hidden group">
         <div class="relative">
           <img
-            :src="product.thumbnails"
+            :src="product.thumbnail"
             :alt="product.title"
             class="w-full"
           />
@@ -90,6 +104,15 @@ const products = getData('products')
           >Add to cart</a
         >
       </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <button
+        @click="loadMoreProduct"
+        class="bg-primary border border-primary text-white px-8 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary"
+      >
+        Load More
+      </button>
     </div>
   </div>
 </template>
