@@ -34,11 +34,9 @@ import { ref, reactive, toRef } from 'vue'
 // }
 
 export function useFetch(url) {
-  const data = ref(null)
+  // const data = ref(null)
 
-  fetch(url)
+  return fetch(url)
     .then((res) => res.json())
-    .then((json) => (data.value = json.products))
-
-  return data
+    .then((json) => json.products)
 }
