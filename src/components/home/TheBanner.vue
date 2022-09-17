@@ -1,3 +1,6 @@
+<script setup>
+  import { RouterLink } from 'vue-router';
+</script>
 <template>
   <div
     class="bg-cover bg-no-repeat bg-center py-36"
@@ -14,10 +17,9 @@
         odio
       </p>
       <div class="mt-12">
-        <a
-          href="#"
+        <router-link to="/shop"
           class="bg-primary border border-primary text-white px-8 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary"
-          >Shop Now</a
+          >Shop Now</router-link
         >
       </div>
     </div>
