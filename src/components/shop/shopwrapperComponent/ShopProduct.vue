@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
+import { useCartStore } from "../../../store/cart"
 import { useFetch } from "../../../hook/getDataSet";
 
 // from hook api
@@ -12,6 +13,10 @@ onMounted(async () => {
 const loadMoreProduct = async () => {
   products.value = await useFetch("https://dummyjson.com/products?limit=20");
 };
+
+
+//add products to store
+const { addProductToCart } = useCartStore()
 </script>
 <template>
   <div class="col-span-3">
@@ -93,10 +98,10 @@ const loadMoreProduct = async () => {
             <div class="text-xs text-gray-500 ml-3">({{ product.stock }})</div>
           </div>
         </div>
-        <a
-          href="#"
+        <button
+        @click="addProductToCart(product)"
           class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-          >Add to cart</a
+          >Add to cart</button
         >
       </div>
     </div>
