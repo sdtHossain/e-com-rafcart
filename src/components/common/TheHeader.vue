@@ -41,9 +41,9 @@ import { RouterLink } from "vue-router";
             8
           </div>
         </router-link>
-        <a
-          href="#"
+        <button
           class="text-center text-gray-700 hover:text-primary transition relative"
+          @click="$emit('sidebarOpen')"
         >
           <div class="text-2xl">
             <i class="fa-solid fa-bag-shopping"></i>
@@ -54,7 +54,7 @@ import { RouterLink } from "vue-router";
           >
             2
           </div>
-        </a>
+        </button>
         <router-link
           to="/account/1"
           class="text-center text-gray-700 hover:text-primary transition relative"
