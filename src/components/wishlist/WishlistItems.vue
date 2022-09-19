@@ -2,6 +2,10 @@
 import { useCartStore } from "../../store/cart";
 
 const { cartItems } = useCartStore()
+const total = ref(0);
+cartItems.forEach((product) => {
+  total.value += product.price;
+});
 </script>
 
 <template>
@@ -36,5 +40,7 @@ const { cartItems } = useCartStore()
         <i class="fa-solid fa-trash"></i>
       </div>
     </div>
+
+    <div v-if="cartItems.length > 0">Total: ${{ total }}</div>
   </div>
 </template>
