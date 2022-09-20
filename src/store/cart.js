@@ -22,8 +22,8 @@ export const useCartStore = defineStore('cart', () => {
     cartItems.value.push(product)
   }
 
-  const deleteCartItem = () => {
-    console.log(cartItems.value)
+  const deleteCartItem = (productId) => {
+    cartItems.value = cartItems.value.filter(item => item.id !== productId)
   }
 
   return { cartItems, addProductToCart, deleteCartItem }

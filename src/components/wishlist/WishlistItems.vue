@@ -46,7 +46,7 @@ const { deleteCartItem } = useCartStore();
       </div>
 
       <div
-        @click="deleteCartItem"
+        @click="deleteCartItem(product.id)"
         class="text-gray-600 cursor-pointer hover:text-primary"
       >
         <i class="fa-solid fa-trash"></i>
