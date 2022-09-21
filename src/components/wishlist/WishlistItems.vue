@@ -4,14 +4,13 @@ import { useCartStore } from "../../store/cart";
 import { storeToRefs } from "pinia";
 
 // const cartStore = useCartStore();
-const { cartItems } = storeToRefs(useCartStore());
-const total = ref(0);
-cartItems.value.forEach((product) => {
-  total.value += product.price;
-});
+const { cartItems, totalAmount } = storeToRefs(useCartStore());
+// const total = ref(0);
+// cartItems.value.forEach((product) => {
+//   total.value += product.price;
+// });
 
-console.log(cartItems)
-// console.log(ref(cartItems))
+console.log(totalAmount)
 
 //deleteCartItem
 const { deleteCartItem } = useCartStore();
@@ -53,6 +52,6 @@ const { deleteCartItem } = useCartStore();
       </div>
     </div>
 
-    <div v-if="cartItems.length > 0">Total: ${{ total }}</div>
+    <div v-if="cartItems.length > 0">Total: ${{ totalAmount }}</div>
   </div>
 </template>
