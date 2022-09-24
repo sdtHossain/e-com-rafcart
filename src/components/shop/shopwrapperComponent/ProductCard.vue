@@ -1,7 +1,9 @@
 <script setup>
-  const props = defineProps(['products'])
+import { useCartStore } from "../../../store/cart";
+//add products to store
+const { addProductToCart } = useCartStore();
+const props = defineProps(["products"]);
 </script>
-
 
 <template>
   <div
@@ -39,7 +41,9 @@
         </h4>
       </router-link>
       <div class="flex items-baseline mb-1 space-x-2">
-        <p class="text-xl text-primary font-semibold">{{ product.price }}</p>
+        <p class="text-xl text-primary font-semibold">
+          {{ product.price }}
+        </p>
         <p class="text-sm text-gray-400 line-through">$55.90</p>
       </div>
       <div class="flex items-center">
@@ -53,10 +57,11 @@
         <div class="text-xs text-gray-500 ml-3">({{ product.stock }})</div>
       </div>
     </div>
-    <a
-      href="#"
+    <button
+      @click="addProductToCart(product)"
       class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-      >Add to cart</a
     >
+      Add to cart
+    </button>
   </div>
 </template>
