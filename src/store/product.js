@@ -31,6 +31,13 @@ export const useProductStore = defineStore("product", () => {
     );
   });
 
+  const getSearchProducts = computed(() => {
+    return (search) =>
+      products.value.filter((product) => {
+        return product.title.toLowerCase().includes(search.toLowerCase());
+      });
+  });
+
   return {
     products,
     getProductCategories,
@@ -38,5 +45,6 @@ export const useProductStore = defineStore("product", () => {
     getProductByCategory,
     getNewArrival,
     getRecomendedProducts,
+    getSearchProducts,
   };
 });
