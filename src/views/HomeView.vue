@@ -1,10 +1,10 @@
 <script setup>
-import TheBanner from '@/components/home/TheBanner.vue'
-import TheFeature from '@/components/home/TheFeature.vue'
-import TheCategory from '@/components/home/TheCategory.vue'
-import NewArrival from '@/components/home/NewArrival.vue'
-import TheAds from '@/components/home/TheAds.vue'
-import TheProducts from '@/components/home/TheProducts.vue'
+import TheBanner from "@/components/home/TheBanner.vue";
+import TheFeature from "@/components/home/TheFeature.vue";
+import TheCategory from "@/components/home/TheCategory.vue";
+import NewArrival from "@/components/home/NewArrival.vue";
+import TheAds from "@/components/home/TheAds.vue";
+import RecomendedProducts from "@/components/home/RecomendedProducts.vue";
 </script>
 
 <template>
@@ -13,5 +13,5 @@ import TheProducts from '@/components/home/TheProducts.vue'
   <TheCategory />
   <NewArrival />
   <TheAds />
-  <TheProducts />
+  <RecomendedProducts />
 </template>
