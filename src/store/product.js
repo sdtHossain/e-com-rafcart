@@ -14,10 +14,12 @@ export const useProductStore = defineStore('product', () => {
   }
 
   const getProductCategories = computed(() => {
-    const categorySet = new Set()
-    categories.value =  products.value.map(({category}) => categorySet.add({category}))
     return [...new Set(products.value.map(product => product.category))]
   })
 
-  return { products, getProductCategories, fetchProducts }
+  const getProductByCategory = computed(() => {
+    return (category) => products.value.filter(product => product.category === category)
+  })
+
+  return { products, getProductCategories, fetchProducts, getProductByCategory }
 })
