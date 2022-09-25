@@ -1,42 +1,41 @@
+<script setup>
+import { ref, computed } from "vue";
+import { useProductStore } from "../../store/product";
+import { useCartStore } from "../../store/cart";
+import { storeToRefs } from "pinia";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+const { products } = storeToRefs(useProductStore());
+const { fetchProducts, getProductById } = useProductStore();
+
+const { addProductToCart } = useCartStore();
+
+fetchProducts();
+
+const product = getProductById(+route.params.id);
+</script>
+
 <template>
   <div class="container grid grid-cols-2 gap-6">
-    <div>
-      <img
-        src="../../assets/images/products/product1.jpg"
-        alt="product"
-        class="w-full"
-      />
+    <div v-if="product">
+      <img :src="product.thumbnail" alt="product" class="w-full" />
       <div class="grid grid-cols-5 gap-4 mt-4">
         <img
-          src="../../assets/images/products/product2.jpg"
+          v-for="(img, index) in product.images"
+          :key="index"
+          :src="img"
           alt="product2"
           class="w-full cursor-pointer border border-primary"
-        />
-        <img
-          src="../../assets/images/products/product3.jpg"
-          alt="product2"
-          class="w-full cursor-pointer border"
-        />
-        <img
-          src="../../assets/images/products/product4.jpg"
-          alt="product2"
-          class="w-full cursor-pointer border"
-        />
-        <img
-          src="../../assets/images/products/product5.jpg"
-          alt="product2"
-          class="w-full cursor-pointer border"
-        />
-        <img
-          src="../../assets/images/products/product6.jpg"
-          alt="product2"
-          class="w-full cursor-pointer border"
         />
       </div>
     </div>
 
     <div>
-      <h2 class="text-3xl font-medium uppercase mb-2">Italian L Shape Sofa</h2>
+      <h2 class="text-3xl font-medium uppercase mb-2">
+        {{ product.title }}
+      </h2>
       <div class="flex items-center mb-4">
         <div class="flex gap-1 text-sm text-yellow-400">
           <span><i class="fa-solid fa-star"></i></span>
@@ -50,15 +49,17 @@
       <div class="space-y-2">
         <p class="text-gray-800 font-semibold space-x-2">
           <span>Availability: </span>
-          <span class="text-green-600">In Stock</span>
+          <span class="text-green-600">{{
+            product.stock > 0 ? "In Stock" : "Out of Stock"
+          }}</span>
         </p>
         <p class="space-x-2">
           <span class="text-gray-800 font-semibold">Brand: </span>
-          <span class="text-gray-600">Apex</span>
+          <span class="text-gray-600">{{ product.brand }}</span>
         </p>
         <p class="space-x-2">
           <span class="text-gray-800 font-semibold">Category: </span>
-          <span class="text-gray-600">Sofa</span>
+          <span class="text-gray-600">{{ product.category }}</span>
         </p>
         <p class="space-x-2">
           <span class="text-gray-800 font-semibold">SKU: </span>
@@ -66,15 +67,18 @@
         </p>
       </div>
       <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-        <p class="text-xl text-primary font-semibold">$45.00</p>
-        <p class="text-base text-gray-400 line-through">$55.00</p>
+        <p class="text-xl text-primary font-semibold">${{ product.price }}</p>
+        <p class="text-base text-gray-400 line-through">
+          ${{
+            Math.floor(
+              product.price + (product.discountPercentage / 100) * product.price
+            )
+          }}
+        </p>
       </div>
 
       <p class="mt-4 text-gray-600">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius eum
-        reprehenderit dolore vel mollitia optio consequatur hic asperiores
-        inventore suscipit, velit consequuntur, voluptate doloremque iure
-        necessitatibus adipisci magnam porro.
+        {{ product.description }}
       </p>
 
       <div class="pt-4">
@@ -175,12 +179,12 @@
       </div>
 
       <div class="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
-        <a
-          href="#"
+        <button
+          @click="addProductToCart(product)"
           class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-primary transition"
         >
           <i class="fa-solid fa-bag-shopping"></i> Add to cart
-        </a>
+        </button>
         <a
           href="#"
           class="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition"
