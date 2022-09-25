@@ -3,7 +3,7 @@ import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 import { useCartStore } from "../../../store/cart";
 import { useFetch } from "../../../hook/getDataSet";
-import ProductCard from "./ProductCard.vue";
+import ProductCard from "../../common/ProductCard.vue";
 
 // from hook api
 const products = ref();

@@ -1,7 +1,7 @@
 <script setup>
 import { useProductStore } from "../../store/product";
 import { storeToRefs } from "pinia";
-import ProductCard from "../shop/shopwrapperComponent/ProductCard.vue";
+import ProductCard from "../common/ProductCard.vue";
 
 const { products, getNewArrival } = storeToRefs(useProductStore());
 const { fetchProducts } = useProductStore();
