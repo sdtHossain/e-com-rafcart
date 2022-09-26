@@ -43,11 +43,11 @@ const trackQuantity = (e, product) => {
       <div class="text-primary text-lg font-semibold">
         <!-- {{ product.quantity }}pcs -->
         <select @change="trackQuantity($event, product)">
-          <option :value="1">1</option>
-          <option :value="2">2</option>
-          <option :value="3">3</option>
-          <option :value="4">4</option>
-          <option :value="5">5</option></select
+          <template v-for="n in [1, 2, 3, 4, 5, 6, 7, 8, 9]" :key="n">
+            <option :selected="n == product.quantity" :value="n">
+              {{ n }}
+            </option>
+          </template></select
         >pcs
       </div>
 
