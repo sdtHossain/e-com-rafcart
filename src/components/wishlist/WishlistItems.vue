@@ -1,5 +1,5 @@
 <script setup>
-import { ref, unref } from "vue";
+import { ref, unref, watch } from "vue";
 import { useCartStore } from "../../store/cart";
 import { storeToRefs } from "pinia";
 
@@ -10,10 +10,13 @@ const { cartItems, totalAmount } = storeToRefs(useCartStore());
 //   total.value += product.price;
 // });
 
-console.log(totalAmount)
+console.log(totalAmount);
 
 //deleteCartItem
 const { deleteCartItem } = useCartStore();
+const trackQuantity = (e, product) => {
+  product.quantity = e.target.value;
+};
 </script>
 
 <template>
@@ -31,13 +34,21 @@ const { deleteCartItem } = useCartStore();
           {{ product.title }}
         </h2>
         <p class="text-gray-500 text-sm">
-          Availability: <span class="text-green-600">In Stock</span>
+          Availability:
+          <span class="text-green-600">In Stock/ {{ product.quantity }}</span>
         </p>
       </div>
       <div class="text-primary text-lg font-semibold">${{ product.price }}</div>
 
       <div class="text-primary text-lg font-semibold">
-        {{ product.quantity }}pcs
+        <!-- {{ product.quantity }}pcs -->
+        <select @change="trackQuantity($event, product)">
+          <option :value="1">1</option>
+          <option :value="2">2</option>
+          <option :value="3">3</option>
+          <option :value="4">4</option>
+          <option :value="5">5</option></select
+        >pcs
       </div>
 
       <div class="text-primary text-lg font-semibold">

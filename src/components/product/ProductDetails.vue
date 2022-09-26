@@ -11,7 +11,9 @@ const route = useRoute();
 const { products } = storeToRefs(useProductStore());
 const { fetchProducts, getProductById } = useProductStore();
 
+// const { productQuantity } = storeToRefs(useCartStore());
 const { addProductToCart } = useCartStore();
+const productQuantity = ref(1);
 
 fetchProducts();
 
@@ -159,14 +161,16 @@ const product = getProductById(+route.params.id);
             class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max"
           >
             <div
+              @click="productQuantity--"
               class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
             >
               -
             </div>
             <div class="h-8 w-8 text-base flex items-center justify-center">
-              4
+              {{ productQuantity }}
             </div>
             <div
+              @click="productQuantity++"
               class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
             >
               +
@@ -176,7 +180,7 @@ const product = getProductById(+route.params.id);
 
         <div class="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
           <button
-            @click="addProductToCart(product)"
+            @click="addProductToCart(product, productQuantity)"
             class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-primary transition"
           >
             <i class="fa-solid fa-bag-shopping"></i> Add to cart
