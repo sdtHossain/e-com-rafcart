@@ -17,26 +17,26 @@ export const useCartStore = defineStore("cart", () => {
   const cartItems = ref([]);
   const totalAmount = ref(0);
   const productQuantity = ref(1);
+  const test = ref(0);
 
-  const calculateTotal = () => {
-    let total = ref(0);
+  function calculateTotal() {
+    totalAmount.value = 0;
     cartItems.value.forEach(
-      (item) => (total.value += item.price * item.quantity)
+      (item) => (totalAmount.value += item.price * item.quantity)
     );
-    return total.value;
-  };
+  }
 
   const addProductToCart = (product, quantity = 1) => {
     product.quantity = quantity;
     cartItems.value.push(product);
-    totalAmount.value = calculateTotal();
+    calculateTotal();
   };
 
-  totalAmount.value = calculateTotal();
+  // totalAmount.value = calculateTotal();
 
   const deleteCartItem = (productId) => {
     cartItems.value = cartItems.value.filter((item) => item.id !== productId);
-    totalAmount.value = calculateTotal();
+    calculateTotal();
   };
 
   return {
@@ -44,5 +44,6 @@ export const useCartStore = defineStore("cart", () => {
     addProductToCart,
     deleteCartItem,
     totalAmount,
+    calculateTotal,
   };
 });

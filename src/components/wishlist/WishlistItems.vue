@@ -3,19 +3,12 @@ import { ref, unref, watch } from "vue";
 import { useCartStore } from "../../store/cart";
 import { storeToRefs } from "pinia";
 
-// const cartStore = useCartStore();
 const { cartItems, totalAmount } = storeToRefs(useCartStore());
-// const total = ref(0);
-// cartItems.value.forEach((product) => {
-//   total.value += product.price;
-// });
+const { calculateTotal, deleteCartItem } = useCartStore();
 
-console.log(totalAmount);
-
-//deleteCartItem
-const { deleteCartItem } = useCartStore();
 const trackQuantity = (e, product) => {
   product.quantity = e.target.value;
+  calculateTotal();
 };
 </script>
 
@@ -41,7 +34,6 @@ const trackQuantity = (e, product) => {
       <div class="text-primary text-lg font-semibold">${{ product.price }}</div>
 
       <div class="text-primary text-lg font-semibold">
-        <!-- {{ product.quantity }}pcs -->
         <select @change="trackQuantity($event, product)">
           <template v-for="n in [1, 2, 3, 4, 5, 6, 7, 8, 9]" :key="n">
             <option :selected="n == product.quantity" :value="n">
