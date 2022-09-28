@@ -1,15 +1,23 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 import { useProductStore } from "../../store/product";
 import { storeToRefs } from "pinia";
 
-const { products, getSearchProducts } = storeToRefs(useProductStore());
-const { fetchProducts } = useProductStore();
+const { products } = storeToRefs(useProductStore());
+const { fetchProducts, getSearchProduct } = useProductStore();
 
 fetchProducts();
 
 const searchInput = ref();
+
+const searchProducts = ref();
+
+searchProducts.value = getSearchProduct(searchInput.value);
+
+const trackChange = () => {
+  searchProducts.value = getSearchProduct(searchInput.value);
+};
 </script>
 
 <template>
@@ -40,7 +48,7 @@ const searchInput = ref();
     >
       <router-link
         :to="`/product/${product.id}`"
-        v-for="product in getSearchProducts(searchInput)"
+        v-for="product in searchProducts"
         :key="product.id"
       >
         <span

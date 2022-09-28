@@ -30,7 +30,6 @@ export const useProductStore = defineStore("product", () => {
   });
 
   const getNewArrival = computed(() => {
-    let length = products.value.length;
     return products.value.filter((product) => product.id > length - 4);
   });
 
@@ -47,6 +46,12 @@ export const useProductStore = defineStore("product", () => {
       });
   });
 
+  function getSearchProduct(searchInput) {
+    return products.value.filter((product) =>
+      product.title.toLowerCase().includes(searchInput.toLowerCase())
+    );
+  }
+
   return {
     products,
     getProductCategories,
@@ -56,6 +61,7 @@ export const useProductStore = defineStore("product", () => {
     getNewArrival,
     getRecomendedProducts,
     getSearchProducts,
+    getSearchProduct,
     relatedProducts,
   };
 });
