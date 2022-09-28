@@ -21,13 +21,12 @@ export const useProductStore = defineStore("product", () => {
       .slice(0, amount);
   }
 
+  function getProductsByCategory(category) {
+    return products.value.filter((product) => product.category === category);
+  }
+
   const getProductCategories = computed(() => {
     return [...new Set(products.value.map((product) => product.category))];
-  });
-
-  const getProductByCategory = computed(() => {
-    return (category) =>
-      products.value.filter((product) => product.category === category);
   });
 
   const getNewArrival = computed(() => {
@@ -53,7 +52,7 @@ export const useProductStore = defineStore("product", () => {
     getProductCategories,
     getProductById,
     fetchProducts,
-    getProductByCategory,
+    getProductsByCategory,
     getNewArrival,
     getRecomendedProducts,
     getSearchProducts,
