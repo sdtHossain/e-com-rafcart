@@ -2,6 +2,7 @@
 import { ref, unref, watch } from "vue";
 import { useCartStore } from "../../store/cart";
 import { storeToRefs } from "pinia";
+import { RouterLink } from "vue-router";
 
 const { cartItems, totalAmount } = storeToRefs(useCartStore());
 const { calculateTotal, deleteCartItem } = useCartStore();
@@ -56,5 +57,11 @@ const trackQuantity = (e, product) => {
     </div>
 
     <div v-if="cartItems.length > 0">Total: ${{ totalAmount }}</div>
+
+    <RouterLink
+      to="/checkout"
+      class="block w-full py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium"
+      >Checkout</RouterLink
+    >
   </div>
 </template>

@@ -1,40 +1,26 @@
+<script setup>
+import { useCartStore } from "../../../store/cart";
+import { storeToRefs } from "pinia";
+
+const { cartItems, totalAmount } = storeToRefs(useCartStore());
+</script>
 <template>
   <div class="col-span-4 border border-gray-200 p-4 rounded">
     <h4 class="text-gray-800 text-lg mb-4 font-medium uppercase">
       order summary
     </h4>
     <div class="space-y-2">
-      <div class="flex justify-between">
+      <div
+        v-for="product in cartItems"
+        :key="product.id"
+        class="flex justify-between"
+      >
         <div>
-          <h5 class="text-gray-800 font-medium">Italian shape sofa</h5>
+          <h5 class="text-gray-800 font-medium">{{ product.title }}</h5>
           <p class="text-sm text-gray-600">Size: M</p>
         </div>
-        <p class="text-gray-600">x3</p>
-        <p class="text-gray-800 font-medium">$320</p>
-      </div>
-      <div class="flex justify-between">
-        <div>
-          <h5 class="text-gray-800 font-medium">Italian shape sofa</h5>
-          <p class="text-sm text-gray-600">Size: M</p>
-        </div>
-        <p class="text-gray-600">x3</p>
-        <p class="text-gray-800 font-medium">$320</p>
-      </div>
-      <div class="flex justify-between">
-        <div>
-          <h5 class="text-gray-800 font-medium">Italian shape sofa</h5>
-          <p class="text-sm text-gray-600">Size: M</p>
-        </div>
-        <p class="text-gray-600">x3</p>
-        <p class="text-gray-800 font-medium">$320</p>
-      </div>
-      <div class="flex justify-between">
-        <div>
-          <h5 class="text-gray-800 font-medium">Italian shape sofa</h5>
-          <p class="text-sm text-gray-600">Size: M</p>
-        </div>
-        <p class="text-gray-600">x3</p>
-        <p class="text-gray-800 font-medium">$320</p>
+        <p class="text-gray-600">x{{ product.quantity }}</p>
+        <p class="text-gray-800 font-medium">${{ totalAmount }}</p>
       </div>
     </div>
 
@@ -42,7 +28,7 @@
       class="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercas"
     >
       <p>subtotal</p>
-      <p>$1280</p>
+      <p>${{ totalAmount }}</p>
     </div>
 
     <div
@@ -54,7 +40,7 @@
 
     <div class="flex justify-between text-gray-800 font-medium py-3 uppercas">
       <p class="font-semibold">Total</p>
-      <p>$1280</p>
+      <p>${{ totalAmount }}</p>
     </div>
 
     <div class="flex items-center mb-4 mt-2">
