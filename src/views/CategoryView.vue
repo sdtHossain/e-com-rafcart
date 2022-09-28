@@ -2,7 +2,7 @@
 import { useProductStore } from "../store/product";
 import { storeToRefs } from "pinia";
 import TheBreadcrumb from "../components/common/TheBreadcrumb.vue";
-import ProductCard from "../components/shop/shopwrapperComponent/ProductCard.vue";
+import ProductCard from "../components/common/ProductCard.vue";
 
 const { products, getProductByCategory } = storeToRefs(useProductStore());
 const { fetchProducts } = useProductStore();
