@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useProductStore } from "../../store/product";
 import { useCartStore } from "../../store/cart";
 import { storeToRefs } from "pinia";
@@ -17,7 +17,9 @@ const productQuantity = ref(1);
 
 fetchProducts();
 
-const product = getProductById(+route.params.id);
+const product = ref();
+product.value = getProductById(+route.params.id);
+watch(route, () => (product.value = getProductById(+route.params.id)));
 </script>
 
 <template>
