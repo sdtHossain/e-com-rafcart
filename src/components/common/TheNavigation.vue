@@ -18,7 +18,7 @@ const { getProductCategories } = storeToRefs(useProductStore());
 
         <!-- dropdown -->
         <div
-          class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible"
+          class="absolute z-10 w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible"
         >
           <RouterLink
             v-for="category in getProductCategories"
