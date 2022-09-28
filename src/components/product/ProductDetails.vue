@@ -161,7 +161,7 @@ const product = getProductById(+route.params.id);
             class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max"
           >
             <div
-              @click="productQuantity--"
+              @click="productQuantity > 1 ? productQuantity-- : 1"
               class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
             >
               -
@@ -170,7 +170,11 @@ const product = getProductById(+route.params.id);
               {{ productQuantity }}
             </div>
             <div
-              @click="productQuantity++"
+              @click="
+                productQuantity < product.stock
+                  ? productQuantity++
+                  : product.stock
+              "
               class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
             >
               +
