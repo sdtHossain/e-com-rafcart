@@ -16,7 +16,7 @@ const categoryProducts = ref();
 
 categoryProducts.value = getProductsByCategory(route.params.categoryname);
 
-watch(route, (category) => {
+watch(route, () => {
   categoryProducts.value = getProductsByCategory(route.params.categoryname);
 });
 </script>
