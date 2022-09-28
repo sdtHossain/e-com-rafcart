@@ -32,8 +32,6 @@ export const useCartStore = defineStore("cart", () => {
     calculateTotal();
   };
 
-  // totalAmount.value = calculateTotal();
-
   const deleteCartItem = (productId) => {
     cartItems.value = cartItems.value.filter((item) => item.id !== productId);
     calculateTotal();
