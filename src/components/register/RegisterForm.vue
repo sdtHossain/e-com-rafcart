@@ -16,10 +16,6 @@ const isReady = computed(() => {
     ? (readyToSubmit.value = true)
     : (readyToSubmit.value = false);
 });
-
-const registerSubmit = () => {
-  console.log("Register submitted");
-};
 </script>
 <template>
   <div class="contain py-16">
@@ -102,7 +98,6 @@ const registerSubmit = () => {
         <div class="mt-4">
           <button
             :disabled="!readyToSubmit"
-            @click="registerSubmit"
             type="submit"
             class="block w-full py-2 text-center text-white bg-primary border border-primary rounded disabled:opacity-50 hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium"
           >
