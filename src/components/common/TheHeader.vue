@@ -17,23 +17,9 @@ const { cartItems } = storeToRefs(useCartStore());
       <Searchbar />
 
       <div class="flex items-center space-x-4">
-        <router-link
-          to="/wishlist"
-          class="text-center text-gray-700 hover:text-primary transition relative"
-        >
-          <div class="text-2xl">
-            <i class="fa-regular fa-heart"></i>
-          </div>
-          <div class="text-xs leading-3">Wishlist</div>
-          <div
-            class="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs"
-          >
-            {{ cartItems.length }}
-          </div>
-        </router-link>
         <button
-          class="text-center text-gray-700 hover:text-primary transition relative"
           @click="$emit('sidebarOpen')"
+          class="text-center text-gray-700 hover:text-primary transition relative"
         >
           <div class="text-2xl">
             <i class="fa-solid fa-bag-shopping"></i>
@@ -42,7 +28,7 @@ const { cartItems } = storeToRefs(useCartStore());
           <div
             class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs"
           >
-            2
+            {{ cartItems.length }}
           </div>
         </button>
         <router-link
