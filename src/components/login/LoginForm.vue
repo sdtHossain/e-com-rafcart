@@ -1,9 +1,21 @@
+<script setup>
+import { ref } from "vue";
+import { useUserStore } from "../../store/user";
+
+const { login } = useUserStore();
+const loginData = ref({});
+</script>
 <template>
   <div class="contain py-16">
     <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
       <h2 class="text-2xl uppercase font-medium mb-1">Login</h2>
       <p class="text-gray-600 mb-6 text-sm">welcome back customer</p>
-      <form action="#" method="post" autocomplete="off">
+      <form
+        action="#"
+        method="post"
+        autocomplete="on"
+        @submit.prevent="login(loginData)"
+      >
         <div class="space-y-2">
           <div>
             <label for="email" class="text-gray-600 mb-2 block"
@@ -15,6 +27,7 @@
               id="email"
               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
               placeholder="youremail.@domain.com"
+              v-model="loginData.email"
             />
           </div>
           <div>
@@ -27,6 +40,7 @@
               id="password"
               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
               placeholder="*******"
+              v-model="loginData.password"
             />
           </div>
         </div>
@@ -47,7 +61,7 @@
         <div class="mt-4">
           <button
             type="submit"
-            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium"
+            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded disabled:opacity-50 hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium"
           >
             Login
           </button>

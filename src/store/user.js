@@ -46,7 +46,29 @@ export const useUserStore = defineStore("user", () => {
     router.push("/login");
   }
 
-  async function login(details) {}
+  async function login(details) {
+    const { email, password } = details;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      switch (err.code) {
+        case "auth/user-not-found":
+          alert("User not found");
+          break;
+        case "auth/wrong-password":
+          alert("Password is incorrect");
+          break;
+        default:
+          alert(err.message);
+      }
+
+      return;
+    }
+
+    user = auth.currentUser;
+    router.push("/checkout");
+  }
 
   async function logout() {}
 
