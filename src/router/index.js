@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { auth } from "../firebase";
+import { storeToRefs } from "pinia";
 import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
@@ -33,6 +35,9 @@ const router = createRouter({
       path: "/checkout",
       name: "Checkout",
       component: () => import("../views/CheckoutView.vue"),
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/login",
@@ -55,6 +60,11 @@ const router = createRouter({
       component: () => import("../views/WishlistView.vue"),
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name === "Checkout" && !auth.currentUser) next({ name: "Login" });
+  else next();
 });
 
 export default router;
