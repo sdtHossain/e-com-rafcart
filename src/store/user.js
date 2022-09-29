@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 
 export const useUserStore = defineStore("user", () => {
-  let user;
+  const user = ref();
 
   // function clearUser() {
   //   user.value = null;
@@ -41,7 +41,7 @@ export const useUserStore = defineStore("user", () => {
       return;
     }
 
-    user = auth.currentUser;
+    user.value = auth.currentUser;
 
     router.push("/login");
   }
@@ -66,11 +66,16 @@ export const useUserStore = defineStore("user", () => {
       return;
     }
 
-    user = auth.currentUser;
+    user.value = auth.currentUser;
     router.push("/checkout");
   }
 
-  async function logout() {}
+  async function logout() {
+    await signOut(auth);
+
+    user.value = null;
+    router.push("/login");
+  }
 
   return { user, register, login, logout };
 });

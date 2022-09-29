@@ -1,9 +1,16 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { useProductStore } from "../../store/product";
+import { useUserStore } from "../../store/user";
+import { auth } from "../../firebase";
 import { storeToRefs } from "pinia";
 
 const { getProductCategories } = storeToRefs(useProductStore());
+
+const { logout } = useUserStore();
+const { user } = storeToRefs(useUserStore());
+
+console.log(user);
 </script>
 <template>
   <nav class="bg-gray-800">
@@ -55,10 +62,19 @@ const { getProductCategories } = storeToRefs(useProductStore());
           >
         </div>
         <router-link
+          v-if="!user"
           to="/login"
           class="text-gray-200 hover:text-white transition"
           >Login</router-link
         >
+
+        <button
+          v-else
+          @click="logout"
+          class="text-gray-200 hover:text-white transition"
+        >
+          LogOut
+        </button>
       </div>
     </div>
   </nav>
