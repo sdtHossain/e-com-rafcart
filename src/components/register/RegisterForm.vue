@@ -1,9 +1,37 @@
+<script setup>
+import { ref, reactive, computed } from "vue";
+import { useUserStore } from "../../store/user";
+import { storeToRefs } from "pinia";
+
+const { register } = useUserStore();
+
+const confirmPass = ref();
+const agreeTerms = ref();
+const readyToSubmit = ref(false);
+const registerData = ref({});
+
+const isReady = computed(() => {
+  return registerData.value.password == confirmPass.value &&
+    agreeTerms.value == true
+    ? (readyToSubmit.value = true)
+    : (readyToSubmit.value = false);
+});
+
+const registerSubmit = () => {
+  console.log("Register submitted");
+};
+</script>
 <template>
   <div class="contain py-16">
     <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
       <h2 class="text-2xl uppercase font-medium mb-1">Create an account</h2>
       <p class="text-gray-600 mb-6 text-sm">Register for new cosutumer</p>
-      <form action="#" method="post" autocomplete="off">
+      <form
+        action="#"
+        method="post"
+        autocomplete="on"
+        @submit.prevent="register(registerData)"
+      >
         <div class="space-y-2">
           <div>
             <label for="name" class="text-gray-600 mb-2 block">Full Name</label>
@@ -13,6 +41,7 @@
               id="name"
               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
               placeholder="fulan fulana"
+              v-model="registerData.name"
             />
           </div>
           <div>
@@ -25,6 +54,7 @@
               id="email"
               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
               placeholder="youremail.@domain.com"
+              v-model="registerData.email"
             />
           </div>
           <div>
@@ -37,6 +67,7 @@
               id="password"
               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
               placeholder="*******"
+              v-model="registerData.password"
             />
           </div>
           <div>
@@ -49,6 +80,7 @@
               id="confirm"
               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
               placeholder="*******"
+              v-model="confirmPass"
             />
           </div>
         </div>
@@ -59,6 +91,7 @@
               name="aggrement"
               id="aggrement"
               class="text-primary focus:ring-0 rounded-sm cursor-pointer"
+              v-model="agreeTerms"
             />
             <label for="aggrement" class="text-gray-600 ml-3 cursor-pointer"
               >I have read and agree to the
@@ -68,8 +101,10 @@
         </div>
         <div class="mt-4">
           <button
+            :disabled="!readyToSubmit"
+            @click="registerSubmit"
             type="submit"
-            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium"
+            class="block w-full py-2 text-center text-white bg-primary border border-primary rounded disabled:opacity-50 hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium"
           >
             create account
           </button>
