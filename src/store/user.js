@@ -5,7 +5,10 @@ import { auth } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
   signOut,
+  getAuth,
 } from "firebase/auth";
 
 export const useUserStore = defineStore("user", () => {
@@ -70,6 +73,18 @@ export const useUserStore = defineStore("user", () => {
     router.push("/checkout");
   }
 
+  function signInWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(getAuth(), provider)
+      .then((result) => {
+        user.value = result.user;
+        router.push("/checkout");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   async function logout() {
     await signOut(auth);
 
@@ -77,5 +92,5 @@ export const useUserStore = defineStore("user", () => {
     router.push("/login");
   }
 
-  return { user, register, login, logout };
+  return { user, register, login, logout, signInWithGoogle };
 });

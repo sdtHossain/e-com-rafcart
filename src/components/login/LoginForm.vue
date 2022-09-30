@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useUserStore } from "../../store/user";
 
-const { login } = useUserStore();
+const { login, signInWithGoogle } = useUserStore();
 const loginData = ref({});
 </script>
 <template>
@@ -83,11 +83,12 @@ const loginData = ref({});
           class="w-1/2 py-2 text-center text-white bg-blue-800 rounded uppercase font-roboto font-medium text-sm hover:bg-blue-700"
           >facebook</a
         >
-        <a
-          href="#"
+        <button
+          @click="signInWithGoogle"
           class="w-1/2 py-2 text-center text-white bg-red-600 rounded uppercase font-roboto font-medium text-sm hover:bg-red-500"
-          >google</a
         >
+          google
+        </button>
       </div>
       <!-- ./login with -->
 
