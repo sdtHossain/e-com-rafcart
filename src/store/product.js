@@ -30,7 +30,9 @@ export const useProductStore = defineStore("product", () => {
   });
 
   const getNewArrival = computed(() => {
-    return products.value.filter((product) => product.id > length - 4);
+    return products.value.filter(
+      (product) => product.id > products.value.length - 4
+    );
   });
 
   const getRecomendedProducts = computed(() => {
