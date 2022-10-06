@@ -25,14 +25,14 @@ const props = defineProps(["products"]);
           class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
           title="view product"
         >
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
         </a>
         <a
           href="#"
           class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
           title="add to wishlist"
         >
-          <i class="fa-solid fa-heart"></i>
+          <font-awesome-icon icon="fa-regular fa-heart" />
         </a>
       </div>
     </div>

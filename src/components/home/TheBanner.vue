@@ -1,10 +1,10 @@
 <script setup>
-  import { RouterLink } from 'vue-router';
+import { RouterLink } from "vue-router";
 </script>
 <template>
   <div
     class="bg-cover bg-no-repeat bg-center py-36"
-    style="background-image: url('../../src/assets/images/banner-bg.jpg')"
+    style="background-image: url('images/banner-bg.jpg')"
   >
     <div class="container">
       <h1 class="text-6xl text-gray-800 font-medium mb-4 capitalize">
@@ -17,7 +17,8 @@
         odio
       </p>
       <div class="mt-12">
-        <router-link to="/shop"
+        <router-link
+          to="/shop"
           class="bg-primary border border-primary text-white px-8 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary"
           >Shop Now</router-link
         >

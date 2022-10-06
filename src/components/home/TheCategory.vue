@@ -24,7 +24,7 @@ fetchProducts();
         class="relative rounded-sm overflow-hidden group"
       >
         <img
-          :src="`src/assets/images/category/category-${index + 1}.jpg`"
+          :src="`images/category/category-${index + 1}.jpg`"
           alt="{{category}}"
           class="w-full"
         />

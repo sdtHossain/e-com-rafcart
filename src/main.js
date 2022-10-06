@@ -1,17 +1,35 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import App from './App.vue'
-import router from './router'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import App from "./App.vue";
+import router from "./router";
 
-import './assets/styles/tailwind.css'
-import './assets/styles/main.css'
+import "./assets/styles/tailwind.css";
+import "./assets/styles/main.css";
 
+/* import the fontawesome core */
+import { library } from "@fortawesome/fontawesome-svg-core";
 
-const pinia = createPinia()
+/* import font awesome icon component */
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-const app = createApp(App)
+/* import specific icons */
+import {
+  faUserSecret,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
-app.use(pinia)
-app.use(router)
+/* add icons to the library */
+library.add(faUserSecret);
+library.add(faHeart);
+library.add(faMagnifyingGlass);
 
-app.mount('#app')
+const pinia = createPinia();
+
+const app = createApp(App);
+
+app.use(pinia);
+app.use(router);
+app.component("font-awesome-icon", FontAwesomeIcon);
+
+app.mount("#app");
