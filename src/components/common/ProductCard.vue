@@ -20,25 +20,25 @@ const props = defineProps(["products"]);
       <div
         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition"
       >
-        <a
-          href="#"
+        <router-link
+          :to="`/product/${product.id}`"
           class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
           title="view product"
         >
           <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-        </a>
-        <a
-          href="#"
+        </router-link>
+        <button
+          @click="addProductToCart(product)"
           class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
           title="add to wishlist"
         >
           <font-awesome-icon icon="fa-regular fa-heart" />
-        </a>
+        </button>
       </div>
     </div>
     <div class="relative bottom-content">
       <div class="pt-4 pb-3 px-4 info-box flex flex-col">
-        <router-link to="/product/1" href="#">
+        <router-link :to="`/product/${product.id}`">
           <h4
             class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition"
           >
