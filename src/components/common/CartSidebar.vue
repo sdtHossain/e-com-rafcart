@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from "vue";
 import WishlistItems from "../wishlist/WishlistItems.vue";
 
 const props = defineProps({
