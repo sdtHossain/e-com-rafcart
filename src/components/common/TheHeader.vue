@@ -11,7 +11,7 @@ const { cartItems } = storeToRefs(useCartStore());
   <header class="py-4 shadow-sm bg-white">
     <div class="container flex items-center justify-between">
       <a href="index.html">
-        <img src="images/logo.svg" alt="Logo" class="w-32" />
+        <img src="/images/logo.png" alt="Logo" class="w-32" />
       </a>
 
       <Searchbar />
@@ -38,7 +38,7 @@ const { cartItems } = storeToRefs(useCartStore());
           class="text-center text-gray-700 hover:text-primary transition relative"
         >
           <div class="text-2xl">
-            <i class="fa-regular fa-user"></i>
+            <font-awesome-icon icon="fa-regular fa-user" />
           </div>
           <div class="text-xs leading-3">Account</div>
         </router-link>

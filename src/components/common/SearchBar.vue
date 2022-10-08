@@ -56,7 +56,7 @@ const trackChange = () => {
           @click="searchInput = null"
         >
           <img
-            src="images/icons/sofa.svg"
+            src="/images/icons/sofa.svg"
             alt="sofa"
             class="w-5 h-5 object-contain"
           />

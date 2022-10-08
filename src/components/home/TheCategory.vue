@@ -8,7 +8,7 @@ const { fetchProducts } = useProductStore();
 fetchProducts();
 
 // const getImage = (img) => {
-//   return `src/assets/images/category/category-${img}.jpg`;
+//   return `src/assets///images/category/category-${img}.jpg`;
 // };
 </script>
 
@@ -24,7 +24,7 @@ fetchProducts();
         class="relative rounded-sm overflow-hidden group"
       >
         <img
-          :src="`images/category/category-${index + 1}.jpg`"
+          :src="`/images/category/category-${index + 1}.jpg`"
           alt="{{category}}"
           class="w-full"
         />

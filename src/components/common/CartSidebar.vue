@@ -18,11 +18,7 @@ const props = defineProps({
       @click="$emit('cancelModal')"
       class="flex w-full items-center p-4 border-b"
     >
-      <img
-        src="../../assets/images/logo.svg"
-        alt="Logo"
-        class="h-auto w-32 mx-auto"
-      />
+      <img src="/images/logo.png" alt="Logo" class="h-auto w-32 mx-auto" />
     </span>
     <div class="container py-16">
       <WishlistItems />

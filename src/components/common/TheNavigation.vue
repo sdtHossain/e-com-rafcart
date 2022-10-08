@@ -34,7 +34,7 @@ console.log(user);
             class="flex items-center px-6 py-3 hover:bg-gray-100 transition"
           >
             <img
-              src="images/icons/sofa.svg"
+              src="/images/icons/sofa.svg"
               alt="sofa"
               class="w-5 h-5 object-contain"
             />
