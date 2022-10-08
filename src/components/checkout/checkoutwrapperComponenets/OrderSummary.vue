@@ -20,7 +20,9 @@ const { cartItems, totalAmount } = storeToRefs(useCartStore());
           <p class="text-sm text-gray-600">Size: M</p>
         </div>
         <p class="text-gray-600">x{{ product.quantity }}</p>
-        <p class="text-gray-800 font-medium">${{ totalAmount }}</p>
+        <p class="text-gray-800 font-medium">
+          ${{ product.price * product.quantity }}
+        </p>
       </div>
     </div>
 
