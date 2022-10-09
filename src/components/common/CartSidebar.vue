@@ -20,7 +20,7 @@ const props = defineProps({
       <img src="/images/logo.png" alt="Logo" class="h-auto w-32 mx-auto" />
     </span>
     <div class="container py-16">
-      <WishlistItems />
+      <WishlistItems @cancel-modal="$emit('cancelModal')" />
 
       <div class="mt-12">
         <router-link

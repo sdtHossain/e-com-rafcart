@@ -60,6 +60,7 @@ const trackQuantity = (e, product) => {
 
     <RouterLink
       to="/checkout"
+      @click="$emit('cancelModal')"
       class="block w-full py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium"
       >Checkout</RouterLink
     >
