@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 import { useCartStore } from "../../../store/cart";
 import { useFetch } from "../../../hook/getDataSet";
@@ -20,18 +20,27 @@ const loadMoreProduct = async () => {
   }
 };
 
-//add products to store
-// const { addProductToCart } = useCartStore();
+//product sorting
+const sortVal = ref('default')
+const sortedProduct = (sortValue) => {
+  sortValue == "price-low-to-high" && products.value.sort((a, b) => a.price - b.price)
+  sortValue == "price-high-to-low" && products.value.sort((a, b) => b.price - a.price)
+  sortValue == "latest" && products.value.sort((a, b) => b.id - a.id)
+}
+
+watch(sortVal, (newSortVal) => sortedProduct(newSortVal));
+
 </script>
 <template>
   <div class="col-span-3">
     <div class="flex items-center mb-4">
       <select
+      v-model=sortVal
         name="sort"
         id="sort"
         class="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary"
       >
-        <option value="">Default sorting</option>
+        <option value="default">Default sorting</option>
         <option value="price-low-to-high">Price low to high</option>
         <option value="price-high-to-low">Price high to low</option>
         <option value="latest">Latest product</option>
@@ -50,7 +59,6 @@ const loadMoreProduct = async () => {
         </div>
       </div>
     </div>
-
     <div class="grid grid-cols-3 gap-6">
       <ProductCard :products="products" />
     </div>
