@@ -6,7 +6,7 @@ export const useProductStore = defineStore("product", () => {
   const categories = ref();
 
   async function fetchProducts() {
-    let res = await fetch("https://dummyjson.com/products");
+    let res = await fetch("https://dummyjson.com/products?limit=100");
     let data = await res.json();
     products.value = await data.products;
   }
