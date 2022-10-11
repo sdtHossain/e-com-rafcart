@@ -1,7 +1,10 @@
 <script setup>
+import { ref } from "vue";
 import { useProductStore } from "@/store/product";
 import { storeToRefs } from "pinia";
-const { getProductCategories } = storeToRefs(useProductStore());
+const { getProductCategories, shopSidebarSelectedCategories } = storeToRefs(
+  useProductStore()
+);
 </script>
 <template>
   <div class="col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hidden">
@@ -19,6 +22,7 @@ const { getProductCategories } = storeToRefs(useProductStore());
             <input
               type="checkbox"
               name="rafcartcategory"
+              v-model="shopSidebarSelectedCategories"
               :id="category"
               :value="category"
               class="text-primary focus:ring-0 rounded-sm cursor-pointer"

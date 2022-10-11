@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 export const useProductStore = defineStore("product", () => {
   const products = ref([]);
   const categories = ref();
+  const shopSidebarSelectedCategories = ref([]);
 
   async function fetchProducts() {
     let res = await fetch("https://dummyjson.com/products?limit=100");
@@ -23,6 +24,12 @@ export const useProductStore = defineStore("product", () => {
 
   function getProductsByCategory(category) {
     return products.value.filter((product) => product.category === category);
+  }
+
+  function getProductsByCategories(categories) {
+    return products.value.filter((product) =>
+      categories.includes(product.category)
+    );
   }
 
   const getProductCategories = computed(() => {
@@ -60,10 +67,12 @@ export const useProductStore = defineStore("product", () => {
     getProductById,
     fetchProducts,
     getProductsByCategory,
+    getProductsByCategories,
     getNewArrival,
     getRecomendedProducts,
     getSearchProducts,
     getSearchProduct,
     relatedProducts,
+    shopSidebarSelectedCategories,
   };
 });

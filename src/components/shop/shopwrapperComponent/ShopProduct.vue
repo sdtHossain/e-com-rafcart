@@ -7,7 +7,8 @@ import { useFetch } from "../../../hook/getDataSet";
 import ProductCard from "../../common/ProductCard.vue";
 import { storeToRefs } from "pinia";
 
-const { products, getRecomendedProducts } = storeToRefs(useProductStore());
+const { products, getRecomendedProducts, shopSidebarSelectedCategories } =
+  storeToRefs(useProductStore());
 const { fetchProducts } = useProductStore();
 
 fetchProducts();
@@ -39,6 +40,20 @@ const sortedProduct = (sortValue) => {
 };
 
 watch(sortVal, (newSortVal) => sortedProduct(newSortVal));
+
+// product by categories
+const categoryFilteredProduct = (categoriesArr) => {
+  if (categoriesArr.length > 0) {
+    shopProducts.value = products.value.filter((product) =>
+      categoriesArr.includes(product.category)
+    );
+  } else {
+    shopProducts.value = getProductsFromStore(productsLimit.value);
+  }
+};
+watch(shopSidebarSelectedCategories, (selectedCategories) => {
+  categoryFilteredProduct(selectedCategories);
+});
 </script>
 <template>
   <div class="col-span-3">
@@ -74,6 +89,7 @@ watch(sortVal, (newSortVal) => sortedProduct(newSortVal));
 
     <div class="mt-12 text-center">
       <button
+        v-if="!shopSidebarSelectedCategories.length"
         @click="loadMoreProduct"
         class="bg-primary border border-primary text-white px-8 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary"
       >
