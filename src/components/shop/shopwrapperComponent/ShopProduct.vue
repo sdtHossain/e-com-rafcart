@@ -2,40 +2,48 @@
 import { onMounted, ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 import { useCartStore } from "../../../store/cart";
+import { useProductStore } from "@/store/product";
 import { useFetch } from "../../../hook/getDataSet";
 import ProductCard from "../../common/ProductCard.vue";
+import { storeToRefs } from "pinia";
+
+const { products, getRecomendedProducts } = storeToRefs(useProductStore());
+const { fetchProducts } = useProductStore();
+
+fetchProducts();
 
 // from hook api
-const products = ref();
-const productsLimit = ref(10);
-onMounted(async () => {
-  products.value = await useFetch(`https://dummyjson.com/products?limit=${productsLimit.value}`);
-});
+// const products = ref();
+// const productsLimit = ref(10);
+// onMounted(async () => {
+//   products.value = await useFetch(`https://dummyjson.com/products?limit=${productsLimit.value}`);
+// });
 
-const loadMoreProduct = async () => {
-  productsLimit.value+=10;
+// const loadMoreProduct = async () => {
+//   productsLimit.value+=10;
 
-  if ( productsLimit.value < 100 ) {
-    products.value = await useFetch(`https://dummyjson.com/products?limit=${productsLimit.value}`);
-  }
-};
+//   if ( productsLimit.value < 100 ) {
+//     products.value = await useFetch(`https://dummyjson.com/products?limit=${productsLimit.value}`);
+//   }
+// };
 
 //product sorting
-const sortVal = ref('default')
+const sortVal = ref("default");
 const sortedProduct = (sortValue) => {
-  sortValue == "price-low-to-high" && products.value.sort((a, b) => a.price - b.price)
-  sortValue == "price-high-to-low" && products.value.sort((a, b) => b.price - a.price)
-  sortValue == "latest" && products.value.sort((a, b) => b.id - a.id)
-}
+  sortValue == "price-low-to-high" &&
+    products.value.sort((a, b) => a.price - b.price);
+  sortValue == "price-high-to-low" &&
+    products.value.sort((a, b) => b.price - a.price);
+  sortValue == "latest" && products.value.sort((a, b) => b.id - a.id);
+};
 
 watch(sortVal, (newSortVal) => sortedProduct(newSortVal));
-
 </script>
 <template>
   <div class="col-span-3">
     <div class="flex items-center mb-4">
       <select
-      v-model=sortVal
+        v-model="sortVal"
         name="sort"
         id="sort"
         class="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary"
