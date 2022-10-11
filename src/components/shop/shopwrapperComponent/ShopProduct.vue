@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 import { useCartStore } from "../../../store/cart";
 import { useProductStore } from "@/store/product";
@@ -12,29 +12,30 @@ const { fetchProducts } = useProductStore();
 
 fetchProducts();
 
-// from hook api
-// const products = ref();
-// const productsLimit = ref(10);
-// onMounted(async () => {
-//   products.value = await useFetch(`https://dummyjson.com/products?limit=${productsLimit.value}`);
-// });
+const shopProducts = ref();
+const productsLimit = ref(10);
 
-// const loadMoreProduct = async () => {
-//   productsLimit.value+=10;
+const getProductsFromStore = (limit) => {
+  return products.value.filter((product) => product.id < limit);
+};
 
-//   if ( productsLimit.value < 100 ) {
-//     products.value = await useFetch(`https://dummyjson.com/products?limit=${productsLimit.value}`);
-//   }
-// };
+shopProducts.value = getProductsFromStore(productsLimit.value);
+
+const loadMoreProduct = () => {
+  productsLimit.value += 10;
+  if (productsLimit.value < 100) {
+    shopProducts.value = getProductsFromStore(productsLimit.value);
+  }
+};
 
 //product sorting
 const sortVal = ref("default");
 const sortedProduct = (sortValue) => {
   sortValue == "price-low-to-high" &&
-    products.value.sort((a, b) => a.price - b.price);
+    shopProducts.value.sort((a, b) => a.price - b.price);
   sortValue == "price-high-to-low" &&
-    products.value.sort((a, b) => b.price - a.price);
-  sortValue == "latest" && products.value.sort((a, b) => b.id - a.id);
+    shopProducts.value.sort((a, b) => b.price - a.price);
+  sortValue == "latest" && shopProducts.value.sort((a, b) => b.id - a.id);
 };
 
 watch(sortVal, (newSortVal) => sortedProduct(newSortVal));
@@ -68,7 +69,7 @@ watch(sortVal, (newSortVal) => sortedProduct(newSortVal));
       </div>
     </div>
     <div class="grid grid-cols-3 gap-6">
-      <ProductCard :products="products" />
+      <ProductCard :products="shopProducts" />
     </div>
 
     <div class="mt-12 text-center">
