@@ -47,7 +47,7 @@ const props = defineProps(["products"]);
         </router-link>
         <div class="flex items-baseline mb-1 space-x-2 mt-auto">
           <p class="text-xl text-primary font-semibold">
-            {{ product.price }}
+            ${{ product.price }}
           </p>
           <p class="text-sm text-gray-400 line-through">$55.90</p>
         </div>
