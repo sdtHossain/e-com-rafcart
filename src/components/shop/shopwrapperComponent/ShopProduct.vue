@@ -7,12 +7,17 @@ import ProductCard from "../../common/ProductCard.vue";
 
 // from hook api
 const products = ref();
+const productsLimit = ref(10);
 onMounted(async () => {
-  products.value = await useFetch("https://dummyjson.com/products?limit=10");
+  products.value = await useFetch(`https://dummyjson.com/products?limit=${productsLimit.value}`);
 });
 
 const loadMoreProduct = async () => {
-  products.value = await useFetch("https://dummyjson.com/products?limit=20");
+  productsLimit.value+=10;
+
+  if ( productsLimit.value < 100 ) {
+    products.value = await useFetch(`https://dummyjson.com/products?limit=${productsLimit.value}`);
+  }
 };
 
 //add products to store
