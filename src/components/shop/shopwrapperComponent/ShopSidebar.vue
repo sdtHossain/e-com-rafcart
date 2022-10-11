@@ -1,3 +1,8 @@
+<script setup>
+import { useProductStore } from "@/store/product";
+import { storeToRefs } from "pinia";
+const { getProductCategories } = storeToRefs(useProductStore());
+</script>
 <template>
   <div class="col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hidden">
     <div class="divide-y divide-gray-200 space-y-5">
@@ -6,53 +11,22 @@
           Categories
         </h3>
         <div class="space-y-2">
-          <div class="flex items-center">
+          <div
+            v-for="category in getProductCategories"
+            :key="category.id"
+            class="flex items-center"
+          >
             <input
               type="checkbox"
-              name="cat-1"
-              id="cat-1"
+              name="rafcartcategory"
+              :id="category"
+              :value="category"
               class="text-primary focus:ring-0 rounded-sm cursor-pointer"
             />
-            <label for="cat-1" class="text-gray-600 ml-3 cusror-pointer"
-              >Bedroom</label
-            >
+            <label :for="category" class="text-gray-600 ml-3 cusror-pointer">{{
+              category
+            }}</label>
             <div class="ml-auto text-gray-600 text-sm">(15)</div>
-          </div>
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              name="cat-2"
-              id="cat-2"
-              class="text-primary focus:ring-0 rounded-sm cursor-pointer"
-            />
-            <label for="cat-2" class="text-gray-600 ml-3 cusror-pointer"
-              >Sofa</label
-            >
-            <div class="ml-auto text-gray-600 text-sm">(9)</div>
-          </div>
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              name="cat-3"
-              id="cat-3"
-              class="text-primary focus:ring-0 rounded-sm cursor-pointer"
-            />
-            <label for="cat-3" class="text-gray-600 ml-3 cusror-pointer"
-              >Office</label
-            >
-            <div class="ml-auto text-gray-600 text-sm">(21)</div>
-          </div>
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              name="cat-4"
-              id="cat-4"
-              class="text-primary focus:ring-0 rounded-sm cursor-pointer"
-            />
-            <label for="cat-4" class="text-gray-600 ml-3 cusror-pointer"
-              >Outdoor</label
-            >
-            <div class="ml-auto text-gray-600 text-sm">(10)</div>
           </div>
         </div>
       </div>
