@@ -77,12 +77,14 @@ watch(shopSidebarSelectedCategories, (selectedCategories) => {
       <div class="flex gap-2 ml-auto">
         <div
           @click="gridView = true"
-          class="border border-primary w-10 h-9 flex items-center justify-center text-white bg-primary rounded cursor-pointer"
+          :class="gridView ? 'active' : ''"
+          class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 rounded cursor-pointer"
         >
           <font-awesome-icon icon="fa-solid fa-grip-vertical" />
         </div>
         <div
           @click="gridView = false"
+          :class="!gridView ? 'active' : ''"
           class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 rounded cursor-pointer"
         >
           <font-awesome-icon icon="fa-solid fa-list" />
