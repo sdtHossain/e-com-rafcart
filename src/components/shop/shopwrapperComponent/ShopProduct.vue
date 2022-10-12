@@ -59,12 +59,12 @@ watch(sortVal, (newSortVal) => sortedProduct(newSortVal));
         <div
           class="border border-primary w-10 h-9 flex items-center justify-center text-white bg-primary rounded cursor-pointer"
         >
-          <i class="fa-solid fa-grip-vertical"></i>
+          <font-awesome-icon icon="fa-solid fa-grip-vertical" />
         </div>
         <div
           class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 rounded cursor-pointer"
         >
-          <i class="fa-solid fa-list"></i>
+          <font-awesome-icon icon="fa-solid fa-list" />
         </div>
       </div>
     </div>
