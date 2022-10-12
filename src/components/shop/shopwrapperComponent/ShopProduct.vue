@@ -46,7 +46,7 @@ const sortedProduct = (sortValue) => {
 watch(sortVal, (newSortVal) => sortedProduct(newSortVal));
 
 // product by categories
-const categoryFilteredProduct = (categoriesArr) => {
+const filteredProduct = (categoriesArr) => {
   if (categoriesArr.length > 0) {
     shopProducts.value = products.value.filter((product) =>
       categoriesArr.includes(product.category)
@@ -56,7 +56,7 @@ const categoryFilteredProduct = (categoriesArr) => {
   }
 };
 watch(shopSidebarSelectedCategories, (selectedCategories) => {
-  categoryFilteredProduct(selectedCategories);
+  filteredProduct(selectedCategories);
 });
 </script>
 <template>
