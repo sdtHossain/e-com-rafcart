@@ -37,6 +37,10 @@ export const useProductStore = defineStore("product", () => {
     return [...new Set(products.value.map((product) => product.category))];
   });
 
+  const getProductBrands = computed(() => {
+    return [...new Set(products.value.map((product) => product.brand))];
+  });
+
   const getNewArrival = computed(() => {
     return products.value.filter(
       (product) => product.id > products.value.length - 4
@@ -65,6 +69,7 @@ export const useProductStore = defineStore("product", () => {
   return {
     products,
     getProductCategories,
+    getProductBrands,
     getProductById,
     fetchProducts,
     getProductsByCategory,
