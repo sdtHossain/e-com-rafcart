@@ -6,6 +6,7 @@ const {
   getProductCategories,
   shopSidebarSelectedCategories,
   getProductBrands,
+  shopSidebarSelectedBrands,
 } = storeToRefs(useProductStore());
 </script>
 <template>
@@ -48,6 +49,7 @@ const {
             <input
               type="checkbox"
               name="brand"
+              v-model="shopSidebarSelectedBrands"
               :id="brand.replace(/ /g, '_')"
               :value="brand.replace(/ /g, '_')"
               class="text-primary focus:ring-0 rounded-sm cursor-pointer"

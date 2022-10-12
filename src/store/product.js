@@ -5,6 +5,7 @@ export const useProductStore = defineStore("product", () => {
   const products = ref([]);
   const categories = ref();
   const shopSidebarSelectedCategories = ref([]);
+  const shopSidebarSelectedBrands = ref([]);
   const gridView = ref(false);
 
   async function fetchProducts() {
@@ -80,6 +81,7 @@ export const useProductStore = defineStore("product", () => {
     getSearchProduct,
     relatedProducts,
     shopSidebarSelectedCategories,
+    shopSidebarSelectedBrands,
     gridView,
   };
 });

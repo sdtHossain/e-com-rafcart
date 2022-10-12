@@ -11,6 +11,7 @@ const {
   products,
   getRecomendedProducts,
   shopSidebarSelectedCategories,
+  shopSidebarSelectedBrands,
   gridView,
 } = storeToRefs(useProductStore());
 const { fetchProducts } = useProductStore();
@@ -46,18 +47,31 @@ const sortedProduct = (sortValue) => {
 watch(sortVal, (newSortVal) => sortedProduct(newSortVal));
 
 // product by categories
-const filteredProduct = (categoriesArr) => {
-  if (categoriesArr.length > 0) {
+const filteredProduct = (categoriesArr, brandsArr) => {
+  if (categoriesArr.length > 0 && brandsArr.length > 0) {
+    shopProducts.value = products.value.filter(
+      (product) =>
+        categoriesArr.includes(product.category) &&
+        brandsArr.includes(product.brand.replace(/ /g, "_"))
+    );
+  } else if (brandsArr.length == 0 && categoriesArr.length > 0) {
     shopProducts.value = products.value.filter((product) =>
       categoriesArr.includes(product.category)
+    );
+  } else if (categoriesArr.length == 0 && brandsArr.length > 0) {
+    shopProducts.value = products.value.filter((product) =>
+      brandsArr.includes(product.brand.replace(/ /g, "_"))
     );
   } else {
     shopProducts.value = getProductsFromStore(productsLimit.value);
   }
 };
-watch(shopSidebarSelectedCategories, (selectedCategories) => {
-  filteredProduct(selectedCategories);
-});
+watch(
+  [shopSidebarSelectedCategories, shopSidebarSelectedBrands],
+  ([selectedCategories, selectedBrands]) => {
+    filteredProduct(selectedCategories, selectedBrands);
+  }
+);
 </script>
 <template>
   <div class="col-span-3">
