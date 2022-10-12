@@ -16,6 +16,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
   faUserSecret,
   faMagnifyingGlass,
+  faList,
+  faGripVertical,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 
@@ -24,6 +26,8 @@ library.add(faUserSecret);
 library.add(faHeart);
 library.add(faMagnifyingGlass);
 library.add(faUser);
+library.add(faList);
+library.add(faGripVertical);
 
 const pinia = createPinia();
 

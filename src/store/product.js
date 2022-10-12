@@ -5,6 +5,7 @@ export const useProductStore = defineStore("product", () => {
   const products = ref([]);
   const categories = ref();
   const shopSidebarSelectedCategories = ref([]);
+  const gridView = ref(false);
 
   async function fetchProducts() {
     let res = await fetch("https://dummyjson.com/products?limit=100");
@@ -74,5 +75,6 @@ export const useProductStore = defineStore("product", () => {
     getSearchProduct,
     relatedProducts,
     shopSidebarSelectedCategories,
+    gridView,
   };
 });

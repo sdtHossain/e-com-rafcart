@@ -7,8 +7,12 @@ import { useFetch } from "../../../hook/getDataSet";
 import ProductCard from "../../common/ProductCard.vue";
 import { storeToRefs } from "pinia";
 
-const { products, getRecomendedProducts, shopSidebarSelectedCategories } =
-  storeToRefs(useProductStore());
+const {
+  products,
+  getRecomendedProducts,
+  shopSidebarSelectedCategories,
+  gridView,
+} = storeToRefs(useProductStore());
 const { fetchProducts } = useProductStore();
 
 fetchProducts();
@@ -72,18 +76,23 @@ watch(shopSidebarSelectedCategories, (selectedCategories) => {
 
       <div class="flex gap-2 ml-auto">
         <div
+          @click="gridView = true"
           class="border border-primary w-10 h-9 flex items-center justify-center text-white bg-primary rounded cursor-pointer"
         >
-          <i class="fa-solid fa-grip-vertical"></i>
+          <font-awesome-icon icon="fa-solid fa-grip-vertical" />
         </div>
         <div
+          @click="gridView = false"
           class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 rounded cursor-pointer"
         >
-          <i class="fa-solid fa-list"></i>
+          <font-awesome-icon icon="fa-solid fa-list" />
         </div>
       </div>
     </div>
-    <div class="grid grid-cols-3 gap-6">
+    <div
+      class="grid rafcart-product-grid"
+      :class="gridView ? 'grid-cols-3 gap-6' : 'grid-cols-1'"
+    >
       <ProductCard :products="shopProducts" />
     </div>
 
