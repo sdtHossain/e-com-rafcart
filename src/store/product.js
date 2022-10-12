@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 export const useProductStore = defineStore("product", () => {
   const products = ref([]);
   const categories = ref();
+  const gridView = ref(false);
 
   async function fetchProducts() {
     let res = await fetch("https://dummyjson.com/products?limit=100");
@@ -65,5 +66,6 @@ export const useProductStore = defineStore("product", () => {
     getSearchProducts,
     getSearchProduct,
     relatedProducts,
+    gridView,
   };
 });

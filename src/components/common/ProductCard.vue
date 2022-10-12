@@ -1,5 +1,9 @@
 <script setup>
 import { useCartStore } from "../../store/cart";
+import { useProductStore } from "@/store/product";
+import { storeToRefs } from "pinia";
+
+const { gridView } = storeToRefs(useProductStore());
 //add products to store
 const { addProductToCart } = useCartStore();
 const props = defineProps(["products"]);
@@ -9,9 +13,10 @@ const props = defineProps(["products"]);
   <div
     v-for="product in products"
     :key="product.title"
-    class="bg-white shadow rounded overflow-hidden group"
+    class="bg-white shadow rounded overflow-hidden group rafcart-product-group"
+    :class="!gridView ? 'list-view flex mb-4' : 'grid-view'"
   >
-    <div class="relative img-wrap">
+    <div class="relative" :class="!gridView ? 'h-full w-[240px]' : 'img-wrap'">
       <img
         :src="product.thumbnail"
         :alt="product.title"
@@ -36,7 +41,10 @@ const props = defineProps(["products"]);
         </button>
       </div>
     </div>
-    <div class="relative bottom-content">
+    <div
+      class="relative bottom-content"
+      :class="!gridView ? 'flex items-center grow' : ''"
+    >
       <div class="pt-4 pb-3 px-4 info-box flex flex-col">
         <router-link :to="`/product/${product.id}`">
           <h4
@@ -46,9 +54,7 @@ const props = defineProps(["products"]);
           </h4>
         </router-link>
         <div class="flex items-baseline mb-1 space-x-2 mt-auto">
-          <p class="text-xl text-primary font-semibold">
-            ${{ product.price }}
-          </p>
+          <p class="text-xl text-primary font-semibold">${{ product.price }}</p>
           <p class="text-sm text-gray-400 line-through">$55.90</p>
         </div>
         <div class="flex items-center">
@@ -62,9 +68,19 @@ const props = defineProps(["products"]);
           <div class="text-xs text-gray-500 ml-3">({{ product.stock }})</div>
         </div>
       </div>
+      <!-- for list view -->
       <button
+        v-if="!gridView"
         @click="addProductToCart(product)"
-        class="absolute bottom-0 block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
+        class="list-view-button block ml-auto mr-3 py-1 px-3 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition"
+      >
+        Add to cart
+      </button>
+      <!-- for grid view -->
+      <button
+        v-else
+        @click="addProductToCart(product)"
+        class="absolute bottom-0 grid-view-button block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
       >
         Add to cart
       </button>
