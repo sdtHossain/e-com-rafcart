@@ -1,10 +1,14 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { useCartStore } from "../../store/cart";
+import { useUserStore } from "@/store/user";
+import { auth } from "@/firebase";
 import { storeToRefs } from "pinia";
 import Searchbar from "./SearchBar.vue";
 
 const { cartItems } = storeToRefs(useCartStore());
+
+const { user } = storeToRefs(useUserStore());
 </script>
 
 <template>
@@ -38,7 +42,13 @@ const { cartItems } = storeToRefs(useCartStore());
           class="text-center text-gray-700 hover:text-primary transition relative"
         >
           <div class="text-2xl">
-            <font-awesome-icon icon="fa-regular fa-user" />
+            <img
+              v-if="user"
+              :src="user.photoURL"
+              alt="profile"
+              class="rounded-full w-[32px] h-[32px] object-cover mx-auto"
+            />
+            <font-awesome-icon v-else icon="fa-regular fa-user" />
           </div>
           <div class="text-xs leading-3">Account</div>
         </router-link>
