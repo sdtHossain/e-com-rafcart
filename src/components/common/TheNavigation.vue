@@ -28,7 +28,7 @@ console.log(user);
           class="absolute z-10 w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible"
         >
           <RouterLink
-            v-for="category in getProductCategories"
+            v-for="category in getProductCategories.slice(0, 6)"
             :key="category.id"
             :to="`/category/${category}`"
             class="flex items-center px-6 py-3 hover:bg-gray-100 transition"

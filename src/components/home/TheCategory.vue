@@ -19,7 +19,7 @@ fetchProducts();
     </h2>
     <div class="grid grid-cols-3 gap-3">
       <div
-        v-for="(category, index) in getProductCategories"
+        v-for="(category, index) in getProductCategories.slice(0, 6)"
         :key="index"
         class="relative rounded-sm overflow-hidden group"
       >

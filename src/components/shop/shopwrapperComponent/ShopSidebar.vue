@@ -21,7 +21,7 @@ const {
         </h3>
         <div class="space-y-2">
           <div
-            v-for="category in getProductCategories"
+            v-for="category in getProductCategories.slice(0, 10)"
             :key="category.id"
             class="flex items-center"
           >
@@ -45,7 +45,7 @@ const {
         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Brands</h3>
         <div class="space-y-2">
           <div
-            v-for="brand in getProductBrands"
+            v-for="brand in getProductBrands.slice(0, 5)"
             :key="brand"
             class="flex items-center"
           >
