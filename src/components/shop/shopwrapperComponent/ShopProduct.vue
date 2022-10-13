@@ -78,7 +78,9 @@ const filteredProduct = (
         product.price < maxValue
     );
   } else {
-    shopProducts.value = getProductsFromStore(productsLimit.value);
+    shopProducts.value = products.value.filter(
+      (product) => product.price > minValue && product.price < maxValue
+    );
   }
 };
 watch(
@@ -94,6 +96,9 @@ watch(
     selectedMinValue,
     selectedMaxValue,
   ]) => {
+    if (selectedMinValue > selectedMaxValue - 100) {
+      minValue.value = selectedMaxValue - 100;
+    }
     filteredProduct(
       selectedCategories,
       selectedBrands,
@@ -135,7 +140,6 @@ watch(
         </div>
       </div>
     </div>
-    <p>min: {{ minValue }} max: {{ maxValue }}</p>
     <div
       class="grid rafcart-product-grid"
       :class="gridView ? 'grid-cols-3 gap-6' : 'grid-cols-1'"

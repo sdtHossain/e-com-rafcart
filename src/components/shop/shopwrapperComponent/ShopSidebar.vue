@@ -9,6 +9,7 @@ const {
   shopSidebarSelectedBrands,
   minValue,
   maxValue,
+  maxRangeAmount,
 } = storeToRefs(useProductStore());
 </script>
 <template>
@@ -66,28 +67,63 @@ const {
 
       <div class="pt-4">
         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Price</h3>
-        <div class="mt-4 flex items-center">
-          <input
-            type="number"
-            name="min"
-            id="min"
-            class="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
-            placeholder="min"
-            v-model="minValue"
-          />
-          <span class="mx-3 text-gray-500">-</span>
-          <input
-            type="number"
-            name="max"
-            id="max"
-            class="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
-            placeholder="max"
-            v-model="maxValue"
-          />
+        <div class="mt-4 flex flex-col items-center">
+          <div class="flex items-center">
+            <input
+              type="text"
+              name="min"
+              id="min"
+              class="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
+              placeholder="min"
+              disabled
+              v-model="minValue"
+            />
+            <span class="mx-3 text-gray-500">-</span>
+            <input
+              type="number"
+              name="max"
+              id="max"
+              class="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
+              placeholder="max"
+              disabled
+              v-model="maxValue"
+            />
+          </div>
+
+          <div
+            class="slider h-[5px] bg-gray-300 mt-5 rounded-[5px] relative w-full overflow-hidden"
+          >
+            <div
+              ref="progress"
+              class="progress h-[5px] rounded-[5px] bg-primary absolute"
+              id="progress"
+              :style="{
+                left: (minValue / maxRangeAmount) * 100 + '%',
+                right: 100 - (maxValue / maxRangeAmount) * 100 + '%',
+              }"
+            ></div>
+          </div>
+          <div class="range-input relative w-full">
+            <input
+              type="range"
+              class="range range-min absolute top-[-5px] h-[5px] w-full"
+              min="0"
+              :max="maxRangeAmount"
+              ref="minInput"
+              v-model="minValue"
+            />
+            <input
+              type="range"
+              class="range range-max absolute top-[-5px] h-[5px] w-full"
+              min="0"
+              :max="maxRangeAmount"
+              v-model="maxValue"
+            />
+          </div>
         </div>
       </div>
 
-      <div class="pt-4">
+      <!-- <div class="pt-4">
         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">size</h3>
         <div class="flex items-center gap-2">
           <div class="size-selector">
@@ -161,7 +197,22 @@ const {
             ></label>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
+<style scoped>
+.range-input input {
+  background: none;
+  -webkit-appearance: none;
+  pointer-events: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  background: #fc3d57;
+  pointer-events: auto;
+}
+</style>
