@@ -10,7 +10,10 @@ const {
   minValue,
   maxValue,
   maxRangeAmount,
+  products,
 } = storeToRefs(useProductStore());
+
+const { getProductsByCategory, getProductsByBrand } = useProductStore();
 </script>
 <template>
   <div class="col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hidden">
@@ -36,7 +39,9 @@ const {
             <label :for="category" class="text-gray-600 ml-3 cusror-pointer">{{
               category
             }}</label>
-            <div class="ml-auto text-gray-600 text-sm">(15)</div>
+            <div class="ml-auto text-gray-600 text-sm">
+              ({{ getProductsByCategory(category).length }})
+            </div>
           </div>
         </div>
       </div>
@@ -60,7 +65,9 @@ const {
             <label :for="brand" class="text-gray-600 ml-3 cusror-pointer">{{
               brand
             }}</label>
-            <div class="ml-auto text-gray-600 text-sm">(15)</div>
+            <div class="ml-auto text-gray-600 text-sm">
+              ({{ getProductsByBrand(brand).length }})
+            </div>
           </div>
         </div>
       </div>

@@ -38,6 +38,10 @@ export const useProductStore = defineStore("product", () => {
     );
   }
 
+  function getProductsByBrand(brand) {
+    return products.value.filter((product) => product.brand === brand);
+  }
+
   const getProductCategories = computed(() => {
     return [...new Set(products.value.map((product) => product.category))];
   });
@@ -79,6 +83,7 @@ export const useProductStore = defineStore("product", () => {
     fetchProducts,
     getProductsByCategory,
     getProductsByCategories,
+    getProductsByBrand,
     getNewArrival,
     getRecomendedProducts,
     getSearchProducts,
