@@ -7,6 +7,8 @@ const {
   shopSidebarSelectedCategories,
   getProductBrands,
   shopSidebarSelectedBrands,
+  minValue,
+  maxValue,
 } = storeToRefs(useProductStore());
 </script>
 <template>
@@ -66,19 +68,21 @@ const {
         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Price</h3>
         <div class="mt-4 flex items-center">
           <input
-            type="text"
+            type="number"
             name="min"
             id="min"
             class="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
             placeholder="min"
+            v-model="minValue"
           />
           <span class="mx-3 text-gray-500">-</span>
           <input
-            type="text"
+            type="number"
             name="max"
             id="max"
             class="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
             placeholder="max"
+            v-model="maxValue"
           />
         </div>
       </div>

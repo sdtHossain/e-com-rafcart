@@ -6,7 +6,9 @@ export const useProductStore = defineStore("product", () => {
   const categories = ref();
   const shopSidebarSelectedCategories = ref([]);
   const shopSidebarSelectedBrands = ref([]);
-  const gridView = ref(false);
+  const gridView = ref(true);
+  const minValue = ref(0);
+  const maxValue = ref(10000);
 
   async function fetchProducts() {
     let res = await fetch("https://dummyjson.com/products?limit=100");
@@ -83,5 +85,7 @@ export const useProductStore = defineStore("product", () => {
     shopSidebarSelectedCategories,
     shopSidebarSelectedBrands,
     gridView,
+    minValue,
+    maxValue,
   };
 });

@@ -13,6 +13,8 @@ const {
   shopSidebarSelectedCategories,
   shopSidebarSelectedBrands,
   gridView,
+  minValue,
+  maxValue,
 } = storeToRefs(useProductStore());
 const { fetchProducts } = useProductStore();
 
@@ -47,29 +49,57 @@ const sortedProduct = (sortValue) => {
 watch(sortVal, (newSortVal) => sortedProduct(newSortVal));
 
 // product by categories
-const filteredProduct = (categoriesArr, brandsArr) => {
+const filteredProduct = (
+  categoriesArr,
+  brandsArr,
+  minValue = 0,
+  maxValue = 10000
+) => {
   if (categoriesArr.length > 0 && brandsArr.length > 0) {
     shopProducts.value = products.value.filter(
       (product) =>
         categoriesArr.includes(product.category) &&
-        brandsArr.includes(product.brand.replace(/ /g, "_"))
+        brandsArr.includes(product.brand.replace(/ /g, "_")) &&
+        product.price > minValue &&
+        product.price < maxValue
     );
   } else if (brandsArr.length == 0 && categoriesArr.length > 0) {
-    shopProducts.value = products.value.filter((product) =>
-      categoriesArr.includes(product.category)
+    shopProducts.value = products.value.filter(
+      (product) =>
+        categoriesArr.includes(product.category) &&
+        product.price > minValue &&
+        product.price < maxValue
     );
   } else if (categoriesArr.length == 0 && brandsArr.length > 0) {
-    shopProducts.value = products.value.filter((product) =>
-      brandsArr.includes(product.brand.replace(/ /g, "_"))
+    shopProducts.value = products.value.filter(
+      (product) =>
+        brandsArr.includes(product.brand.replace(/ /g, "_")) &&
+        product.price > minValue &&
+        product.price < maxValue
     );
   } else {
     shopProducts.value = getProductsFromStore(productsLimit.value);
   }
 };
 watch(
-  [shopSidebarSelectedCategories, shopSidebarSelectedBrands],
-  ([selectedCategories, selectedBrands]) => {
-    filteredProduct(selectedCategories, selectedBrands);
+  [
+    shopSidebarSelectedCategories,
+    shopSidebarSelectedBrands,
+    minValue,
+    maxValue,
+  ],
+  ([
+    selectedCategories,
+    selectedBrands,
+    selectedMinValue,
+    selectedMaxValue,
+  ]) => {
+    filteredProduct(
+      selectedCategories,
+      selectedBrands,
+      selectedMinValue,
+      selectedMaxValue
+    );
   }
 );
 </script>
@@ -105,6 +135,7 @@ watch(
         </div>
       </div>
     </div>
+    <p>min: {{ minValue }} max: {{ maxValue }}</p>
     <div
       class="grid rafcart-product-grid"
       :class="gridView ? 'grid-cols-3 gap-6' : 'grid-cols-1'"
