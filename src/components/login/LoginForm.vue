@@ -1,9 +1,34 @@
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, computed } from "vue";
 import { useUserStore } from "../../store/user";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, minLength } from "@vuelidate/validators";
 
 const { login, signInWithGoogle } = useUserStore();
-const loginData = ref({});
+
+// vuelidate validation
+const formData = reactive({
+  email: "",
+  password: "",
+});
+
+const rules = computed(() => {
+  return {
+    email: { required, email },
+    password: { required, minLength: minLength(6) },
+  };
+});
+
+const v$ = useVuelidate(rules, formData);
+
+const submitForm = async () => {
+  const result = await v$.value.$validate();
+  if (result) {
+    login(formData);
+  } else {
+    alert("Failed to log in");
+  }
+};
 </script>
 <template>
   <div class="contain py-16">
@@ -14,7 +39,7 @@ const loginData = ref({});
         action="#"
         method="post"
         autocomplete="on"
-        @submit.prevent="login(loginData)"
+        @submit.prevent="submitForm"
       >
         <div class="space-y-2">
           <div>
@@ -27,8 +52,11 @@ const loginData = ref({});
               id="email"
               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
               placeholder="youremail.@domain.com"
-              v-model="loginData.email"
+              v-model="formData.email"
             />
+            <span v-for="error in v$.email.$errors" :key="error.$uid">
+              {{ error.$message }}
+            </span>
           </div>
           <div>
             <label for="password" class="text-gray-600 mb-2 block"
@@ -40,8 +68,11 @@ const loginData = ref({});
               id="password"
               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
               placeholder="*******"
-              v-model="loginData.password"
+              v-model="formData.password"
             />
+            <span v-for="error in v$.password.$errors" :key="error.$uid">
+              {{ error.$message }}
+            </span>
           </div>
         </div>
         <div class="flex items-center justify-between mt-6">
@@ -94,7 +125,9 @@ const loginData = ref({});
 
       <p class="mt-4 text-center text-gray-600">
         Don't have account?
-        <a href="register.html" class="text-primary">Register now</a>
+        <router-link to="/register" class="text-primary"
+          >Register now</router-link
+        >
       </p>
     </div>
   </div>

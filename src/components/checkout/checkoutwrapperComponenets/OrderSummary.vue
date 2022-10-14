@@ -54,7 +54,7 @@ const { cartItems, totalAmount } = storeToRefs(useCartStore());
       />
       <label for="aggrement" class="text-gray-600 ml-3 cursor-pointer text-sm"
         >I agree to the
-        <a href="#" class="text-primary">terms & conditions</a></label
+        <a href="#" class="text-primary">terms &amp; conditions</a></label
       >
     </div>
 

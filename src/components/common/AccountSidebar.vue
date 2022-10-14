@@ -19,7 +19,7 @@ const { user } = storeToRefs(useUserStore());
         />
         <img
           v-else
-          src="images/avatar.png"
+          src="/images/avatar.png"
           alt="profile"
           class="rounded-full w-14 h-14 border border-gray-200 p-1 object-cover"
         />

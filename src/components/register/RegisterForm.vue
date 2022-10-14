@@ -2,20 +2,49 @@
 import { ref, reactive, computed } from "vue";
 import { useUserStore } from "../../store/user";
 import { storeToRefs } from "pinia";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, minLength, sameAs } from "@vuelidate/validators";
 
-const { register } = useUserStore();
+const { register, signInWithGoogle } = useUserStore();
 
-const confirmPass = ref();
-const agreeTerms = ref();
-const readyToSubmit = ref(false);
-const registerData = ref({});
-
-const isReady = computed(() => {
-  return registerData.value.password == confirmPass.value &&
-    agreeTerms.value == true
-    ? (readyToSubmit.value = true)
-    : (readyToSubmit.value = false);
+// const confirmPass = ref();
+// const agreeTerms = ref();
+// const readyToSubmit = ref(false);
+const registerData = reactive({
+  name: "",
+  email: "",
+  password: "",
+  confirmPass: "",
+  agreeTerms: "",
 });
+
+const rules = computed(() => {
+  return {
+    name: { required },
+    email: { required, email },
+    password: { required, minLength: minLength(6) },
+    confirmPass: { required, sameAs: sameAs(registerData.password) },
+    agreeTerms: { required },
+  };
+});
+
+const v$ = useVuelidate(rules, registerData);
+
+const submitForm = async () => {
+  const result = await v$.value.$validate();
+  if (result) {
+    register(registerData);
+  } else {
+    alert("Failed to register");
+  }
+};
+
+// const isReady = computed(() => {
+//   return registerData.value.password == confirmPass.value &&
+//     agreeTerms.value == true
+//     ? (readyToSubmit.value = true)
+//     : (readyToSubmit.value = false);
+// });
 </script>
 <template>
   <div class="contain py-16">
@@ -26,7 +55,7 @@ const isReady = computed(() => {
         action="#"
         method="post"
         autocomplete="on"
-        @submit.prevent="register(registerData)"
+        @submit.prevent="submitForm"
       >
         <div class="space-y-2">
           <div>
@@ -36,9 +65,12 @@ const isReady = computed(() => {
               name="name"
               id="name"
               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-              placeholder="fulan fulana"
+              placeholder="Your Name"
               v-model="registerData.name"
             />
+            <span v-for="error in v$.name.$errors" :key="error.$uid">
+              {{ error.$message }}
+            </span>
           </div>
           <div>
             <label for="email" class="text-gray-600 mb-2 block"
@@ -52,6 +84,9 @@ const isReady = computed(() => {
               placeholder="youremail.@domain.com"
               v-model="registerData.email"
             />
+            <span v-for="error in v$.email.$errors" :key="error.$uid">
+              {{ error.$message }}
+            </span>
           </div>
           <div>
             <label for="password" class="text-gray-600 mb-2 block"
@@ -65,6 +100,9 @@ const isReady = computed(() => {
               placeholder="*******"
               v-model="registerData.password"
             />
+            <span v-for="error in v$.password.$errors" :key="error.$uid">
+              {{ error.$message }}
+            </span>
           </div>
           <div>
             <label for="confirm" class="text-gray-600 mb-2 block"
@@ -76,8 +114,11 @@ const isReady = computed(() => {
               id="confirm"
               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
               placeholder="*******"
-              v-model="confirmPass"
+              v-model="registerData.confirmPass"
             />
+            <span v-for="error in v$.confirmPass.$errors" :key="error.$uid">
+              value must be equal to the password value
+            </span>
           </div>
         </div>
         <div class="mt-6">
@@ -87,17 +128,19 @@ const isReady = computed(() => {
               name="aggrement"
               id="aggrement"
               class="text-primary focus:ring-0 rounded-sm cursor-pointer"
-              v-model="agreeTerms"
+              v-model="registerData.agreeTerms"
             />
             <label for="aggrement" class="text-gray-600 ml-3 cursor-pointer"
               >I have read and agree to the
-              <a href="#" class="text-primary">terms & conditions</a></label
+              <a href="#" class="text-primary">terms &amp; conditions</a></label
             >
           </div>
+          <p v-for="error in v$.agreeTerms.$errors" :key="error.$uid">
+            You have to check the agree terms
+          </p>
         </div>
         <div class="mt-4">
           <button
-            :disabled="!readyToSubmit"
             type="submit"
             class="block w-full py-2 text-center text-white bg-primary border border-primary rounded disabled:opacity-50 hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium"
           >
@@ -121,17 +164,18 @@ const isReady = computed(() => {
           class="w-1/2 py-2 text-center text-white bg-blue-800 rounded uppercase font-roboto font-medium text-sm hover:bg-blue-700"
           >facebook</a
         >
-        <a
-          href="#"
+        <button
+          @click="signInWithGoogle"
           class="w-1/2 py-2 text-center text-white bg-red-600 rounded uppercase font-roboto font-medium text-sm hover:bg-red-500"
-          >google</a
         >
+          google
+        </button>
       </div>
       <!-- ./login with -->
 
       <p class="mt-4 text-center text-gray-600">
         Already have account?
-        <a href="login.html" class="text-primary">Login now</a>
+        <router-link to="/login" class="text-primary">Login now</router-link>
       </p>
     </div>
   </div>
