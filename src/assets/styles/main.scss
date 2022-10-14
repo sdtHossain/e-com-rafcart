@@ -1825,3 +1825,39 @@ h6 {
 .active {
   @apply bg-primary text-white border-primary;
 }
+
+// cart sidebar styles
+.cartsidebar {
+  .cart-product-wrapper {
+    flex-wrap: wrap;
+    gap: 0rem;
+
+    .thumb {
+      width: 20%;
+    }
+    .title {
+      width: 70%;
+    }
+
+    .unit-price {
+      display: none;
+    }
+
+    .total-price {
+      width: 100%;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .quantity {
+      width: 100%;
+      font-size: 14px;
+      font-weight: 400;
+      select {
+        background-image: none;
+      }
+    }
+    .cartsidebar-tag {
+      display: inline-block;
+    }
+  }
+}

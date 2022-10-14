@@ -18,33 +18,40 @@ const trackQuantity = (e, product) => {
     <div
       v-for="product in cartItems"
       :key="product.id"
-      class="flex items-center justify-between border gap-6 p-4 border-gray-200 rounded"
+      class="cart-product-wrapper flex items-center justify-between border gap-6 p-4 border-gray-200 rounded"
     >
-      <div class="w-28">
+      <div class="w-28 thumb">
         <img :src="product.thumbnail" alt="product 6" class="w-full" />
       </div>
-      <div class="w-1/3">
+      <div class="w-1/3 title">
         <h2 class="text-gray-800 text-xl font-medium uppercase">
           {{ product.title }}
         </h2>
         <p class="text-gray-500 text-sm">
           Availability:
-          <span class="text-green-600">In Stock/ {{ product.quantity }}</span>
+          <span class="text-green-600">In Stock</span>
         </p>
       </div>
-      <div class="text-primary text-lg font-semibold">${{ product.price }}</div>
+      <div class="text-primary text-lg font-semibold unit-price">
+        ${{ product.price }}
+      </div>
 
-      <div class="text-primary text-lg font-semibold">
-        <select @change="trackQuantity($event, product)">
+      <div class="text-primary text-lg font-semibold quantity">
+        <span class="cartsidebar-tag hidden text-gray-600">Qty: </span>
+        <select
+          @change="trackQuantity($event, product)"
+          class="border-none shadow-none"
+        >
           <template v-for="n in [1, 2, 3, 4, 5, 6, 7, 8, 9]" :key="n">
             <option :selected="n == product.quantity" :value="n">
               {{ n }}
             </option>
-          </template></select
-        >pcs
+          </template>
+        </select>
       </div>
 
-      <div class="text-primary text-lg font-semibold">
+      <div class="text-primary text-lg font-semibold total-price">
+        <span class="cartsidebar-tag hidden text-gray-600">Total: </span>
         ${{ product.quantity * product.price }}
       </div>
 
