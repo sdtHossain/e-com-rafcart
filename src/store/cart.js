@@ -27,8 +27,10 @@ export const useCartStore = defineStore("cart", () => {
   }
 
   const addProductToCart = (product, quantity = 1) => {
-    product.quantity = quantity;
-    cartItems.value.push(product);
+    if (!cartItems.value.includes(product)) {
+      product.quantity = quantity;
+      cartItems.value.push(product);
+    }
     calculateTotal();
   };
 
