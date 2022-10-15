@@ -27,7 +27,7 @@ const router = createRouter({
       component: () => import("../views/CategoryView.vue"),
     },
     {
-      path: "/account/:id",
+      path: "/account",
       name: "Account",
       component: () => import("../views/AccountView.vue"),
     },
@@ -63,8 +63,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name === "Checkout" && !auth.currentUser) next({ name: "Login" });
-  else next();
+  if (to.name === "Account" && !auth.currentUser) {
+    next({ name: "Login" });
+  } else next();
 });
 
 export default router;

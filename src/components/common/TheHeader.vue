@@ -14,9 +14,9 @@ const { user } = storeToRefs(useUserStore());
 <template>
   <header class="py-4 shadow-sm bg-white">
     <div class="container flex items-center justify-between">
-      <a href="index.html">
+      <router-link to="/">
         <img src="/images/logo.png" alt="Logo" class="w-32" />
-      </a>
+      </router-link>
 
       <Searchbar />
 
@@ -38,17 +38,11 @@ const { user } = storeToRefs(useUserStore());
           </div>
         </button>
         <router-link
-          to="/account/1"
+          to="/account"
           class="text-center text-gray-700 hover:text-primary transition relative"
         >
           <div class="text-2xl">
-            <img
-              v-if="user"
-              :src="user.photoURL"
-              alt="profile"
-              class="rounded-full w-[32px] h-[32px] object-cover mx-auto"
-            />
-            <font-awesome-icon v-else icon="fa-regular fa-user" />
+            <font-awesome-icon icon="fa-regular fa-user" />
           </div>
           <div class="text-xs leading-3">Account</div>
         </router-link>

@@ -70,7 +70,7 @@ export const useUserStore = defineStore("user", () => {
     }
 
     user.value = auth.currentUser;
-    router.push("/checkout");
+    router.push("/account");
   }
 
   function signInWithGoogle() {
@@ -78,7 +78,7 @@ export const useUserStore = defineStore("user", () => {
     signInWithPopup(getAuth(), provider)
       .then((result) => {
         user.value = result.user;
-        router.push("/checkout");
+        router.push("/account");
       })
       .catch((error) => {
         console.log(error);

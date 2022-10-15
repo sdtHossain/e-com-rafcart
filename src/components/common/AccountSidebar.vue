@@ -12,7 +12,7 @@ const { user } = storeToRefs(useUserStore());
     <div class="px-4 py-3 shadow flex items-center gap-4">
       <div class="flex-shrink-0">
         <img
-          v-if="user"
+          v-if="user && user.photoURL"
           :src="user.photoURL"
           alt="profile"
           class="rounded-full w-14 h-14 border border-gray-200 p-1 object-cover"
@@ -26,8 +26,10 @@ const { user } = storeToRefs(useUserStore());
       </div>
       <div class="flex-grow">
         <p class="text-gray-600">Hello,</p>
-        <h4 v-if="user" class="text-gray-800 font-medium">
-          {{ user.displayName.split(" ")[0] }}
+        <h4 v-if="user && user.displayName" class="text-gray-800 font-medium">
+          <span v-if="user.displayName">{{
+            user.displayName.split(" ")[0]
+          }}</span>
         </h4>
       </div>
     </div>
@@ -36,6 +38,10 @@ const { user } = storeToRefs(useUserStore());
       class="mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600"
     >
       <div class="space-y-1 pl-8">
+        <p class="text-xs text-gray-500">
+          Note: this part will work after setting backend, only
+          <b>logout</b> and <b>cartlist</b> are working
+        </p>
         <a
           href="#"
           class="relative text-primary block font-medium capitalize transition"
