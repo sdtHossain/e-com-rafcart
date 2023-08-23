@@ -8,7 +8,7 @@ const { user } = storeToRefs(useUserStore());
 </script>
 
 <template>
-  <div class="col-span-3">
+  <div class="col-span-12 md:col-span-3">
     <div class="px-4 py-3 shadow flex items-center gap-4">
       <div class="flex-shrink-0">
         <img

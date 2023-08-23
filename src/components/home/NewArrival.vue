@@ -15,7 +15,7 @@ fetchProducts();
       top new arrival
     </h2>
 
-    <div class="grid grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
       <ProductCard :products="getNewArrival" />
     </div>
   </div>

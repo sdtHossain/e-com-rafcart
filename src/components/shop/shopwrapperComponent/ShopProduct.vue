@@ -115,7 +115,7 @@ watch(
         v-model="sortVal"
         name="sort"
         id="sort"
-        class="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary"
+        class="w-full md:w-44 text-sm text-gray-600 py-3 px-4 border-primary border md:border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary"
       >
         <option value="default">Default sorting</option>
         <option value="price-low-to-high">Price low to high</option>
@@ -127,14 +127,14 @@ watch(
         <div
           @click="gridView = true"
           :class="gridView ? 'active' : ''"
-          class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 rounded cursor-pointer"
+          class="hidden md:flex border border-gray-300 w-10 h-9 items-center justify-center text-gray-600 rounded cursor-pointer"
         >
           <font-awesome-icon icon="fa-solid fa-grip-vertical" />
         </div>
         <div
           @click="gridView = false"
           :class="!gridView ? 'active' : ''"
-          class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 rounded cursor-pointer"
+          class="hidden md:flex border border-gray-300 w-10 h-9 items-center justify-center text-gray-600 rounded cursor-pointer"
         >
           <font-awesome-icon icon="fa-solid fa-list" />
         </div>
@@ -142,7 +142,7 @@ watch(
     </div>
     <div
       class="grid rafcart-product-grid"
-      :class="gridView ? 'grid-cols-3 gap-6' : 'grid-cols-1'"
+      :class="gridView ? 'grid-cols-1 md:grid-cols-3 gap-6' : 'grid-cols-1'"
     >
       <ProductCard :products="shopProducts" />
     </div>

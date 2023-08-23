@@ -14,16 +14,16 @@ const trackQuantity = (e, product) => {
 </script>
 
 <template>
-  <div v-if="cartItems" class="col-span-9 space-y-4">
+  <div v-if="cartItems" class="col-span-12 md:col-span-9 space-y-4">
     <div
       v-for="product in cartItems"
       :key="product.id"
-      class="cart-product-wrapper flex items-center justify-between border gap-6 p-4 border-gray-200 rounded"
+      class="bg-primary bg-opacity-10 md:bg-white md:bg-opacity-100 cart-product-wrapper flex flex-col md:flex-row items-center justify-between border gap-6 p-4 border-gray-200 rounded"
     >
-      <div class="w-28 thumb">
+      <div class="w-full md:w-28 thumb">
         <img :src="product.thumbnail" alt="product 6" class="w-full" />
       </div>
-      <div class="w-1/3 title">
+      <div class="w-full md:w-1/3 title">
         <h2 class="text-gray-800 text-xl font-medium uppercase">
           {{ product.title }}
         </h2>
@@ -32,12 +32,17 @@ const trackQuantity = (e, product) => {
           <span class="text-green-600">In Stock</span>
         </p>
       </div>
-      <div class="text-primary text-lg font-semibold unit-price">
-        ${{ product.price }}
+      <div
+        class="w-full md:w-auto text-primary text-lg font-semibold unit-price flex justify-between"
+      >
+        <span class="font-weight-bold inline-block md:hidden">Price</span>
+        <span>${{ product.price }}</span>
       </div>
 
-      <div class="text-primary text-lg font-semibold quantity">
-        <span class="cartsidebar-tag hidden text-gray-600">Qty: </span>
+      <div
+        class="w-full md:w-auto flex justify-between text-primary text-lg font-semibold quantity"
+      >
+        <span class="cartsidebar-tag inline-block md:hidden">Qty: </span>
         <select
           @change="trackQuantity($event, product)"
           class="border-none shadow-none"
@@ -50,8 +55,10 @@ const trackQuantity = (e, product) => {
         </select>
       </div>
 
-      <div class="text-primary text-lg font-semibold total-price">
-        <span class="cartsidebar-tag hidden text-gray-600">Total: </span>
+      <div
+        class="w-full md:w-auto flex justify-between text-primary text-lg font-semibold total-price"
+      >
+        <span class="cartsidebar-tag inline-block md:hidden">Total: </span>
         ${{ product.quantity * product.price }}
       </div>
 

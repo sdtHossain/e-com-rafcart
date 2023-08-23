@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { useProductStore } from "../../store/product";
 import { useUserStore } from "../../store/user";
@@ -9,10 +10,14 @@ const { getProductCategories } = storeToRefs(useProductStore());
 
 const { logout } = useUserStore();
 const { user } = storeToRefs(useUserStore());
+
+const isMobileMenuOpen = ref(false);
 </script>
 <template>
-  <nav class="bg-gray-800">
-    <div class="container flex">
+  <nav class="bg-gray-800 border-gray-200 dark:bg-gray-900">
+    <div
+      class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4"
+    >
       <div
         class="px-8 py-4 bg-primary flex items-center cursor-pointer relative group"
       >
@@ -41,38 +46,75 @@ const { user } = storeToRefs(useUserStore());
         </div>
       </div>
 
-      <div class="flex items-center justify-between flex-grow pl-12">
-        <div class="flex items-center space-x-6 capitalize">
-          <router-link to="/" class="text-gray-200 hover:text-white transition"
-            >Home</router-link
-          >
-
-          <router-link
-            to="/shop"
-            class="text-gray-200 hover:text-white transition"
-            >Shop</router-link
-          >
-          <a href="#" class="text-gray-200 hover:text-white transition"
-            >About us</a
-          >
-          <a href="#" class="text-gray-200 hover:text-white transition"
-            >Contact us</a
-          >
-        </div>
-        <router-link
-          v-if="!user"
-          to="/login"
-          class="text-gray-200 hover:text-white transition"
-          >Login</router-link
+      <button
+        @click="isMobileMenuOpen = !isMobileMenuOpen"
+        data-collapse-toggle="navbar-default"
+        type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-default"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="w-5 h-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14"
         >
-
-        <button
-          v-else
-          @click="logout"
-          class="text-gray-200 hover:text-white transition"
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15"
+          />
+        </svg>
+      </button>
+      <div
+        :class="isMobileMenuOpen ? 'block' : 'hidden'"
+        class="w-full md:w-auto md:flex md:flex-grow"
+        id="navbar-default"
+      >
+        <ul
+          class="font-medium flex flex-col p-0 md:mx-auto mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
         >
-          LogOut
-        </button>
+          <li>
+            <router-link
+              to="/"
+              class="text-gray-200 hover:text-primary transition"
+              >Home</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/shop"
+              class="text-gray-200 hover:text-primary transition"
+              >Shop</router-link
+            >
+          </li>
+        </ul>
+
+        <ul
+          class="md:ml-auto font-medium flex flex-col p-0 md:flex-row md:space-x-8 mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+        >
+          <li>
+            <router-link
+              v-if="!user"
+              to="/login"
+              class="block py-2 md:pl-3 pr-4 text-white rounded md:bg-transparent md:p-0 dark:text-white"
+              aria-current="page"
+              >Login</router-link
+            >
+            <router-link
+              v-else
+              to="/login"
+              class="block py-2 md:pl-3 pr-4 text-white rounded md:bg-transparent md:p-0 dark:text-white"
+              aria-current="page"
+              >Logout</router-link
+            >
+          </li>
+        </ul>
       </div>
     </div>
   </nav>

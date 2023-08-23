@@ -15,7 +15,7 @@ fetchProducts();
       recomended for you
     </h2>
 
-    <div class="grid grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
       <ProductCard :products="getRecomendedProducts" />
     </div>
   </div>

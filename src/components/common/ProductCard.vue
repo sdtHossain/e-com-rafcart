@@ -13,7 +13,7 @@ const props = defineProps(["products"]);
   <div
     v-for="product in products"
     :key="product.title"
-    class="bg-white shadow rounded overflow-hidden group rafcart-product-group"
+    class="bg-primary md:bg-white bg-opacity-10 md:bg-opacity-100 shadow rounded overflow-hidden group rafcart-product-group"
     :class="!gridView ? 'list-view flex mb-4' : 'grid-view'"
   >
     <div class="relative" :class="!gridView ? 'h-full w-[240px]' : 'img-wrap'">

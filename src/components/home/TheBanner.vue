@@ -4,14 +4,14 @@ import { RouterLink } from "vue-router";
 <template>
   <div
     class="bg-cover bg-no-repeat bg-center py-36"
-    style="background-image: url('images/banner-bg.jpg')"
+    style="background-image: url('images/banner-bg.jpeg')"
   >
     <div class="container">
-      <h1 class="text-6xl text-gray-800 font-medium mb-4 capitalize">
+      <h1 class="text-3xl md:text-6xl text-white font-medium mb-4 capitalize">
         best collection for <br />
         home decoration
       </h1>
-      <p>
+      <p class="text-white">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam <br />
         accusantium perspiciatis, sapiente magni eos dolorum ex quos dolores
         odio

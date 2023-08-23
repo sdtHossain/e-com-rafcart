@@ -1,9 +1,9 @@
 <template>
   <!-- footer -->
   <footer class="bg-white pt-16 pb-12 border-t border-gray-100">
-    <div class="container grid grid-cols-3">
-      <div class="col-span-1 space-y-8">
-        <img src="/images/logo.png" alt="logo" class="w-30" />
+    <div class="container grid grid-cols-1 md:grid-cols-3">
+      <div class="col-span-1 space-y-8 pr-4">
+        <img src="/images/logo.png" alt="logo" class="w-24" />
         <div class="mr-2">
           <p class="text-gray-500">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, hic?
@@ -25,8 +25,8 @@
         </div>
       </div>
 
-      <div class="col-span-2 grid grid-cols-2 gap-8">
-        <div class="grid grid-cols-2 gap-8">
+      <div class="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h3
               class="text-sm font-semibold text-gray-400 uppercase tracking-wider"
@@ -87,7 +87,7 @@
             </div>
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h3
               class="text-sm font-semibold text-gray-400 uppercase tracking-wider"
@@ -155,8 +155,10 @@
 
   <!-- copyright -->
   <div class="bg-gray-800 py-4">
-    <div class="container flex items-center justify-between">
-      <p class="text-white">
+    <div
+      class="container flex flex-col md:flex-row items-center justify-between"
+    >
+      <p class="text-white text-center md:text-left">
         &copy; TailCommerce - All Right Reserved | vue developed by Shahadat
       </p>
       <img src="/images/methods.png" alt="methods" class="h-5" />

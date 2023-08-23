@@ -18,7 +18,7 @@ const { user } = storeToRefs(useUserStore());
         <img src="/images/logo.png" alt="Logo" class="w-32" />
       </router-link>
 
-      <Searchbar />
+      <Searchbar class="hidden md:flex" />
 
       <div class="flex items-center space-x-4">
         <button
